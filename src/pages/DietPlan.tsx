@@ -276,32 +276,102 @@ export function DietPlan() {
           })}
         </div>
 
-        {/* Daily Summary */}
-        <Card className="mt-6">
-          <CardContent className="p-4">
-            <h3 className="font-medium text-slate-900 dark:text-slate-100 mb-3">
-              {t('dailySummary')}
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center">
-                <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  {userPlan.diet.meals.reduce((total: number, meal: any) => total + calculateMealCalories(meal), 0)}
+            {/* Daily Summary */}
+            <Card className="mt-6">
+              <CardContent className="p-4">
+                <h3 className="font-medium text-slate-900 dark:text-slate-100 mb-3">
+                  {t('dailySummary')}
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                      {userPlan.diet.meals.reduce((total: number, meal: any) => total + calculateMealCalories(meal), 0)}
+                    </p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('totalCalories')}
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                      {userPlan.diet.meals.length}
+                    </p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('meals')}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </>
+        )}
+
+        {/* Hydration Tab */}
+        {activeTab === 'hydration' && (
+          <div className="space-y-6">
+            <HydrationTracker />
+
+            {/* Hydration Tips */}
+            <Card>
+              <CardHeader>
+                <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+                  {t('hydration.tips')}
+                </h3>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-start space-x-3">
+                  <Target className="h-5 w-5 text-blue-500 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-slate-900 dark:text-slate-100">
+                      {t('hydration.tip1Title')}
+                    </p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('hydration.tip1Description')}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Clock className="h-5 w-5 text-green-500 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-slate-900 dark:text-slate-100">
+                      {t('hydration.tip2Title')}
+                    </p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('hydration.tip2Description')}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Macros Tab */}
+        {activeTab === 'macros' && (
+          <div className="space-y-6">
+            <MacroCalculator dailyMeals={userPlan.diet.meals} />
+          </div>
+        )}
+
+        {/* Shopping Tab */}
+        {activeTab === 'shopping' && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center space-x-2">
+                  <ShoppingCart className="h-5 w-5 text-slate-600 dark:text-slate-400" />
+                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+                    {t('diet.shoppingList')}
+                  </h3>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 dark:text-slate-400 text-center py-8">
+                  {t('diet.shoppingListComingSoon')}
                 </p>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  {t('totalCalories')}
-                </p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-                  {userPlan.diet.meals.length}
-                </p>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  {t('meals')}
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );
