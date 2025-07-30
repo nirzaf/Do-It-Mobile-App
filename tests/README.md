@@ -5,19 +5,22 @@ This directory contains end-to-end tests for the Do IT Mobile App using Playwrig
 ## Setup
 
 1. Install Playwright dependencies:
+
 ```bash
 npm install
 npx playwright install
 ```
 
-2. Make sure the development server is running:
+1. Make sure the development server is running:
+
 ```bash
 npm run dev
 ```
 
 ## Running Tests
 
-### Basic test execution:
+### Basic test execution
+
 ```bash
 # Run all tests
 npm run test:e2e
@@ -32,7 +35,8 @@ npm run test:e2e:headed
 npm run test:e2e:debug
 ```
 
-### Advanced options:
+### Advanced options
+
 ```bash
 # Run specific test file
 npx playwright test app.spec.ts
@@ -49,6 +53,7 @@ npx playwright test --grep "onboarding"
 The test suite covers all features described in the README.md:
 
 ### 🚀 Onboarding Flow
+
 - ✅ Welcome screen with language toggle
 - ✅ User profile data collection form
 - ✅ Goal selection (Lose Weight, Gain Weight, Gain Muscle, Extra Diet)
@@ -56,6 +61,7 @@ The test suite covers all features described in the README.md:
 - ✅ Navigation between onboarding steps
 
 ### 🏠 Main Application Features
+
 - ✅ Dashboard with personalized greeting
 - ✅ Training program navigation and display
 - ✅ Exercise detail views with sets/reps
@@ -64,6 +70,7 @@ The test suite covers all features described in the README.md:
 - ✅ Subscription packages (Basic 300 SAR, VIP 550 SAR)
 
 ### 🎨 UI/UX Features
+
 - ✅ Dark/Light theme toggle
 - ✅ Responsive design (mobile viewport testing)
 - ✅ Internationalization (English/Arabic)
@@ -71,6 +78,7 @@ The test suite covers all features described in the README.md:
 - ✅ Navigation and routing
 
 ### 💾 State Management
+
 - ✅ User data persistence
 - ✅ Context state management
 - ✅ Route protection
@@ -87,6 +95,7 @@ tests/
 ## Browser Support
 
 Tests run on multiple browsers:
+
 - Chromium (Desktop)
 - Firefox (Desktop)
 - WebKit/Safari (Desktop)
@@ -105,6 +114,7 @@ Tests run on multiple browsers:
 ## Test Data
 
 Tests use the same mock data as the application:
+
 - `src/data/exercises.json` - Exercise data
 - `src/data/plans.json` - Diet and training plans
 - `src/data/locales/` - Translation files
@@ -112,6 +122,7 @@ Tests use the same mock data as the application:
 ## Continuous Integration
 
 The tests are configured to:
+
 - Run in parallel for faster execution
 - Retry failed tests on CI
 - Generate HTML reports
@@ -119,14 +130,15 @@ The tests are configured to:
 
 ## Troubleshooting
 
-### Common Issues:
+### Common Issues
 
 1. **Tests timeout**: Increase timeout in `playwright.config.ts`
 2. **Server not starting**: Check if port 5173 is available
 3. **Element not found**: Update selectors in test files
 4. **Flaky tests**: Add proper wait conditions
 
-### Getting Help:
+### Getting Help
+
 - [Playwright Documentation](https://playwright.dev/docs/intro)
 - [Playwright Best Practices](https://playwright.dev/docs/best-practices)
 - [Debugging Guide](https://playwright.dev/docs/debug)
