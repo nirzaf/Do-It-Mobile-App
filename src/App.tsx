@@ -15,6 +15,7 @@ import { TrainingPlan } from './pages/TrainingPlan';
 import { Exercises } from './pages/Exercises';
 import { ExerciseDetail } from './pages/ExerciseDetail';
 import { Profile } from './pages/Profile';
+import { Subscription } from './pages/Subscription';
 
 /**
  * Main App component with routing and context providers
@@ -41,6 +42,7 @@ function App() {
                 <Route path="/exercises" element={<Exercises />} />
                 <Route path="/exercises/:exerciseId" element={<ExerciseDetail />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/subscription" element={<Subscription />} />
                 
                 {/* Catch all route */}
                 <Route path="*" element={<Navigate to="/welcome" replace />} />

@@ -140,5 +140,19 @@
   "exerciseDetails": "Exercise Details",
   "instructionalPhoto": "Instructional Photo",
   "instructionalVideo": "Instructional Video",
-  "close": "Close"
+  "close": "Close",
+  "chooseYourPlan": "Choose Your Plan",
+  "selectPlanDescription": "Select the perfect plan that fits your fitness goals and budget",
+  "mostPopular": "Most Popular",
+  "personalizedDietPlan": "Personalized Diet Plan",
+  "basicWorkoutPlan": "Basic Workout Plan",
+  "advancedWorkoutPlan": "Advanced Workout Plan",
+  "progressTracking": "Progress Tracking",
+  "emailSupport": "Email Support",
+  "nutritionGuidance": "Nutrition Guidance",
+  "personalTrainer": "Personal Trainer Access",
+  "liveClasses": "Live Fitness Classes",
+  "prioritySupport": "Priority Support",
+  "subscriptionConfirmation": "You have subscribed to the {packageName} package!",
+  "backToDashboard": "Back to Dashboard"
 }
