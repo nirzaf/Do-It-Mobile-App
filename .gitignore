@@ -7,18 +7,91 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output/
+**/__snapshots__/
+*.test.js
+*.test.js.snap
+*.test.ts
+*.test.tsx
+jest.config.js
+cypress/
+cypress.env.json
+cypress.spec.js
+
+# Build outputs
+/dist
+/build
+/coverage
+*.tsbuildinfo
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# React Native
+.idea/
+.expo/
+web-build/
+web-report/
+
+# Android/IntelliJ
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
+
+# iOS/Pods
+**/ios/**/build/
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*.xcodeproj/xcuserdata
+**/ios/**/*.xcworkspace/xcuserdata
+**/ios/**/xcuserdata
+**/ios/**/Pods/
+
+# Metro
+.metro-health-check*
+
+# Babel
+*.bundle
+*.js.map
+*.css.map
+
+# Misc
+.DS_Store
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Test outputs
+test-results/
+playwright-report/
+playwright/.cache/
