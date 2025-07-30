@@ -1,102 +1,412 @@
-# Do IT Mobile App
+# Enhanced Do IT Mobile App Prototype Requirements
 
-You are an expert Senior Frontend Developer specializing in creating high-fidelity, interactive prototypes using React, TypeScript, and Tailwind CSS. You excel at building clean, well-structured, and visually appealing user interfaces based on detailed requirements.
+You are an expert Senior Frontend Developer specializing in creating high-fidelity, production-ready mobile app prototypes using React, TypeScript, and Tailwind CSS. You excel at building scalable, maintainable, and accessible user interfaces that follow industry best practices and modern development standards.
 
-**Context:**
+## **Project Overview**
 
-You are tasked with building a complete, clickable mobile app simulation for a new personalized fitness and diet application named "Do IT." The goal of this simulation is to serve as a functional prototype to demonstrate the app's core user flows and features to stakeholders.
+You are tasked with developing a comprehensive, interactive mobile app prototype for "Do IT" - a personalized fitness and diet application. This prototype will serve as a functional demonstration of the app's core features and user experience for stakeholder review and user testing.
 
-This is a **frontend-only prototype**. There is no backend or database. All data, including user profiles, exercises, and meal plans, must be mocked and stored in local JSON files. All "logic," such as calculating BMI or generating plans, will be simulated with client-side functions.
+This is a **frontend-only prototype** with all data mocked locally. The application must demonstrate professional-grade UI/UX design, smooth interactions, and robust error handling while maintaining code quality standards suitable for production development.
 
-The application must have a minimalist, clean aesthetic and support both **light and dark modes**.
+## **Technical Requirements**
 
-**Primary Task:**
+### **1. Technology Stack & Architecture**
 
-Generate the complete, runnable code for the "Do IT" mobile app simulation. The application must be built as a modern, multi-file React project using the specified technology stack. The final output should be a series of code blocks, one for each file, with clear file paths. The simulation must be fully interactive, allowing a user to navigate through all the defined screens and user flows.
+**Core Technologies:**
 
-**Core Requirements:**
+- **Framework:** React 18+ with Vite (latest stable versions)
+- **Language:** TypeScript 5+ with strict mode enabled
+- **Styling:** Tailwind CSS 3+ with JIT mode
+- **Routing:** React Router v6+ with type-safe routing
+- **State Management:** React Context API with proper TypeScript typing
+- **Icons:** Lucide React for consistent iconography
+- **Animation:** Framer Motion for smooth transitions
+- **Form Handling:** React Hook Form with Zod validation
+- **Date Handling:** date-fns for date manipulation
 
-**1. Technology Stack & Project Setup:**
+**Project Structure:**
 
-* **Framework:** React (using Vite for project setup is preferred).
-* **Language:** TypeScript.
-* **Styling:** Tailwind CSS. Configure it for the `class`-based dark mode strategy.
-* **Routing:** `react-router-dom` for all navigation.
-* **Icons:** Use a library like `lucide-react` for icons.
-* **Project Structure:** Organize the code into the following directory structure:
+```
+/src
+├── /assets
+│   ├── /images
+│   └── /fonts
+├── /components
+│   ├── /ui (atomic components: Button, Input, Card, Modal, etc.)
+│   ├── /forms (form-specific components)
+│   ├── /layout (Header, Footer, Navigation)
+│   └── /features (feature-specific components)
+├── /contexts
+│   ├── ThemeContext.tsx
+│   ├── LanguageContext.tsx
+│   ├── UserContext.tsx
+│   └── AuthContext.tsx
+├── /data
+│   ├── /mocks
+│   │   ├── exercises.json
+│   │   ├── plans.json
+│   │   └── users.json
+│   └── /locales
+│       ├── en.json
+│       └── ar.json
+├── /hooks
+│   ├── useTheme.ts
+│   ├── useTranslation.ts
+│   ├── useUser.ts
+│   └── useMediaQuery.ts
+├── /lib
+│   ├── utils.ts
+│   ├── validators.ts
+│   └── constants.ts
+├── /pages
+│   ├── /onboarding
+│   ├── /dashboard
+│   ├── /training
+│   ├── /diet
+│   └── /subscription
+├── /routes
+│   ├── ProtectedRoute.tsx
+│   └── router.tsx
+├── /services
+│   └── mockApi.ts
+├── /types
+│   ├── index.ts
+│   ├── user.types.ts
+│   ├── exercise.types.ts
+│   └── plan.types.ts
+├── App.tsx
+├── main.tsx
+└── index.css
+```
 
-    ```
-    /src
-    ├── /assets
-    ├── /components
-    │   ├── /ui (for reusable elements like Button, Card, Input)
-    │   └── /shared (for complex shared components like Header, Nav)
-    ├── /context (for React context providers)
-    ├── /data (for all mock data and translations)
-    │   └── /locales
-    ├── /hooks (for custom hooks)
-    ├── /lib (for utility functions)
-    ├── /pages (for top-level screen components)
-    └── main.tsx
-    ```
+### **2. Design System & Accessibility**
 
-**2. Styling, Theme, and Internationalization (i18n):**
+**Visual Design:**
 
-* **Theme:** Implement a clean, minimalist UI with support for both light and dark modes.
-  * **Colors:** Use a neutral color palette (e.g., Tailwind's `slate` color family) for backgrounds and text. Use a vibrant `blue` (e.g., `blue-500`) as the primary accent color for buttons, links, and active UI elements.
-  * **Theme Toggle:** Create a `ThemeContext` and a toggle button (e.g., in a header) that switches between light and dark modes by adding or removing the `dark` class from the `<html>` element.
-* **Language:**
-  * Create a `LanguageContext` to manage language state (`'en'` or `'ar'`).
-  * Create translation files: `src/data/locales/en.json` and `src/data/locales/ar.json`. Populate them with all the necessary UI text strings.
-  * The Welcome Screen must feature a toggle to switch between English and Arabic. Switching the language should update the entire UI's text accordingly. For Arabic, the layout should feel right-to-left (RTL), which Tailwind can handle with `dir="rtl"`.
+- Implement a cohesive design system with consistent spacing, typography, and color usage
+- Support for light/dark themes with smooth transitions
+- Mobile-first responsive design (320px to 768px primary breakpoints)
+- Consistent border radius, shadows, and elevation patterns
+- Loading states, error states, and empty states for all data displays
 
-**3. Global State & Mock Data:**
+**Color Palette:**
 
-* **User State:** Use a `UserContext` to store the user's profile data (name, gender, weight, height, age, goal, etc.) after they complete the onboarding process.
-* **Mock Data Files:**
-  * `src/data/exercises.json`: Create an array of at least 10 mock exercises. Each exercise object should have an `id`, `name`, `targetMuscle`, `sets`, `reps` (specify different reps for 'Lose Weight' vs 'Gain Muscle' goals), `photoUrl`, and `videoUrl`. Use placeholder image/video URLs (e.g., `https://placehold.co/600x400` for images).
-  * `src/data/plans.json`: Create mock diet and training plans. Structure it so you can easily retrieve a full plan based on a user's goal (e.g., `plans['Lose Weight'].diet`, `plans['Lose Weight'].training`).
+```typescript
+const colors = {
+  primary: {
+    light: 'blue-500',
+    dark: 'blue-400'
+  },
+  background: {
+    light: 'white',
+    dark: 'slate-900'
+  },
+  surface: {
+    light: 'slate-50',
+    dark: 'slate-800'
+  },
+  text: {
+    primary: { light: 'slate-900', dark: 'slate-100' },
+    secondary: { light: 'slate-600', dark: 'slate-400' }
+  },
+  success: 'green-500',
+  warning: 'amber-500',
+  error: 'red-500'
+}
+```
 
-**4. Utility Functions (`src/lib/utils.ts`):**
+**Accessibility Standards:**
 
-* Create and export the following client-side simulation functions:
-  * `calculateBMI(weightKg, heightCm)`: Returns the calculated BMI value.
-  * `calculateDailyCalories(userProfile)`: Returns a mock calorie target based on user's goal and profile.
-  * `calculateWaterIntake(weightKg)`: Returns a recommended daily water intake in liters.
-  * `generatePlan(userProfile)`: This function will not generate a new plan but will look up and return the appropriate pre-defined plan from `plans.json` based on the user's selected goal.
+- WCAG 2.1 AA compliance
+- Proper ARIA labels and roles
+- Keyboard navigation support
+- Focus management and visible focus indicators
+- Screen reader compatibility
+- Proper heading hierarchy
+- Color contrast ratios meeting accessibility standards
 
-**5. Screen-by-Screen Implementation:**
+### **3. Internationalization (i18n) & Localization**
 
-* **Onboarding Flow (Routes start with `/`):**
+**Implementation:**
 
-  * **Welcome Screen (`/`):** Display the app name "Do IT". Include the language toggle (English/Arabic). A "Get Started" button navigates to `/register/profile`.
-  * **User Data Collection Screen (`/register/profile`):** A form with validated input fields for First Name, Last Name, Gender, Weight, Height, Age, Email, and Phone Number. "Next" button saves this data to a temporary state and navigates to `/register/goal`.
-  * **Goal Selection Screen (`/register/goal`):** Display large, clickable cards for each goal: "Lose Weight," "Gain Weight," "Gain Muscle," "Extra Diet." Selecting a goal saves it and navigates to `/register/media`.
-  * **Profile Media Screen (`/register/media`):** An optional screen with two buttons: "Upload Profile Photo" and "Upload Progress Videos." These buttons should simulate a file selection but not perform an actual upload. A "Finish" or "Skip" button saves all collected data to the `UserContext` and navigates the user to the main dashboard (`/dashboard`).
+- Custom translation hook with TypeScript support
+- RTL/LTR layout switching for Arabic
+- Number and date formatting based on locale
+- Pluralization support
+- Translation key type safety
+- Fallback language support
 
-* **Main Application Flow (Routes should be protected/redirect if user profile is not set):**
+**Translation Structure:**
 
-  * **Main Dashboard (`/dashboard`):** The central hub. Display a personalized greeting (e.g., "Welcome, [FirstName]\!"). Feature two large, distinct, clickable cards: "View Training Program" (links to `/training`) and "View Diet Plan" (links to `/diet`). Also include a button/link to the `/subscription` page.
-  * **Diet Plan Screen (`/diet`):**
-    * Display the calculated BMI, daily calorie target, and daily water intake goal using the utility functions.
-    * Show the personalized meal plan from the mock data, listing 5 meals with food recommendations and portion sizes for the day.
-  * **Training Plan Screen (`/training`):**
-    * Display the workout for the current day based on the user's plan (e.g., "Day 1: Chest & Biceps").
-    * List the exercises for the day. Each list item should be clickable and navigate to a detailed view of that exercise.
-  * **Exercise Detail View (Can be a modal or a route like `/training/exercise/:id`):**
-    * Display the exercise name.
-    * Show the instructional photo (`photoUrl`).
-    * Show the instructional video (`videoUrl`) - an embeddable placeholder is fine.
-    * Clearly state the number of sets and repetitions required.
-  * **Subscription Screen (`/subscription`):**
-    * Display two cards side-by-side: "Basic Package (300 SAR/month)" and "VIP Package (550 SAR/month)".
-    * List the features for each package as specified in the requirements.
-    * Each card has a "Subscribe" button. Clicking it should show a simple confirmation alert (e.g., "You have subscribed to the [Package Name] package\!").
+```json
+{
+  "common": {
+    "welcome": "Welcome",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "onboarding": {
+    "getStarted": "Get Started",
+    "profileTitle": "Create Your Profile",
+    "goalTitle": "Select Your Goal"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email",
+    "minLength": "Must be at least {{min}} characters"
+  }
+}
+```
 
-**Output Specification:**
+### **4. State Management & Data Architecture**
 
-* Generate the code for each file within its own formatted code block.
-* Start each block with a comment indicating the full file path (e.g., `// File: src/pages/Dashboard.tsx`).
-* Ensure all TypeScript types (`interface UserProfile`, `interface Exercise`, etc.) are clearly defined in a `types.ts` file or colocated where appropriate.
-* The code must be clean, well-commented, and free of errors.
-* The final output must be a complete, functional prototype that fulfills all the requirements listed above.
+**Context Providers:**
+
+1. **ThemeContext:**
+   - Theme preference persistence (localStorage)
+   - System theme detection
+   - Smooth theme transitions
+
+2. **LanguageContext:**
+   - Language preference persistence
+   - Dynamic locale loading
+   - RTL/LTR direction management
+
+3. **UserContext:**
+   - User profile management
+   - Goal tracking
+   - Progress persistence
+
+4. **AuthContext:**
+   - Authentication state simulation
+   - Protected route management
+   - Session persistence
+
+**Mock Data Schema:**
+
+```typescript
+interface Exercise {
+  id: string;
+  name: LocalizedString;
+  targetMuscle: string[];
+  equipment: string[];
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  sets: number;
+  reps: {
+    loseWeight: string;
+    gainMuscle: string;
+    gainWeight: string;
+  };
+  restSeconds: number;
+  instructions: LocalizedString[];
+  tips: LocalizedString[];
+  photoUrl: string;
+  videoUrl: string;
+  thumbnailUrl: string;
+}
+
+interface DietPlan {
+  id: string;
+  goal: UserGoal;
+  meals: Meal[];
+  dailyCalories: number;
+  macros: {
+    protein: number;
+    carbs: number;
+    fats: number;
+  };
+  hydration: number;
+}
+
+interface UserProfile {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  gender: 'male' | 'female' | 'other';
+  birthDate: string;
+  weight: number;
+  height: number;
+  goal: UserGoal;
+  activityLevel: ActivityLevel;
+  profilePhotoUrl?: string;
+  progressVideos?: string[];
+  preferences: {
+    language: 'en' | 'ar';
+    theme: 'light' | 'dark' | 'system';
+    notifications: boolean;
+  };
+  subscription?: {
+    type: 'basic' | 'vip';
+    startDate: string;
+    endDate: string;
+  };
+}
+```
+
+### **5. Utility Functions & Services**
+
+**Core Utilities (`src/lib/utils.ts`):**
+
+```typescript
+export const calculateBMI = (weightKg: number, heightCm: number): number
+export const calculateBMR = (profile: UserProfile): number
+export const calculateTDEE = (profile: UserProfile): number
+export const calculateDailyCalories = (profile: UserProfile): CalorieTargets
+export const calculateMacros = (calories: number, goal: UserGoal): Macros
+export const calculateWaterIntake = (weightKg: number, activityLevel: ActivityLevel): number
+export const generatePlan = (profile: UserProfile): { diet: DietPlan; training: TrainingPlan }
+export const formatDate = (date: Date, locale: string): string
+export const formatCurrency = (amount: number, currency: string): string
+```
+
+**Validation Schemas (`src/lib/validators.ts`):**
+
+```typescript
+export const profileSchema = z.object({
+  firstName: z.string().min(2).max(50),
+  lastName: z.string().min(2).max(50),
+  email: z.string().email(),
+  phone: z.string().regex(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/),
+  gender: z.enum(['male', 'female', 'other']),
+  weight: z.number().min(30).max(300),
+  height: z.number().min(100).max(250),
+  birthDate: z.string().refine(isValidBirthDate)
+})
+```
+
+### **6. Screen Implementation Details**
+
+**Onboarding Flow:**
+
+1. **Splash Screen (`/`):**
+   - Animated logo entrance
+   - Auto-redirect after 2 seconds or tap to continue
+   - Language selection overlay on first launch
+
+2. **Welcome Screen (`/welcome`):**
+   - Hero section with app benefits
+   - Language toggle with visual feedback
+   - Animated "Get Started" CTA
+   - Terms and Privacy links
+
+3. **Registration Flow (`/register/*`):**
+   - Multi-step form with progress indicator
+   - Real-time validation with helpful error messages
+   - Auto-save progress to prevent data loss
+   - Smooth transitions between steps
+   - Back navigation with confirmation if data exists
+
+4. **Goal Selection (`/register/goal`):**
+   - Interactive cards with hover/tap effects
+   - Detailed descriptions for each goal
+   - Visual icons for each option
+   - Confirmation modal before proceeding
+
+5. **Media Upload (`/register/media`):**
+   - Drag-and-drop zones for photos/videos
+   - File type and size validation
+   - Preview of uploaded media
+   - Progress indicators for "uploads"
+   - Optional skip with explanation
+
+**Main Application:**
+
+1. **Dashboard (`/dashboard`):**
+   - Personalized greeting with time-based messages
+   - Quick stats widget (streak, calories, water)
+   - Action cards with subtle animations
+   - Quick access toolbar
+   - Pull-to-refresh gesture support
+
+2. **Training Program (`/training`):**
+   - Weekly calendar view
+   - Today's workout highlight
+   - Exercise list with completion checkboxes
+   - Rest timer between sets
+   - Video preview thumbnails
+   - Workout history tab
+
+3. **Exercise Detail Modal:**
+   - Full-screen modal with gesture dismissal
+   - Video player with controls
+   - Step-by-step instructions
+   - Form tips and common mistakes
+   - Set/rep tracker with haptic feedback
+   - Notes section for user input
+
+4. **Diet Plan (`/diet`):**
+   - Daily/Weekly view toggle
+   - Meal cards with macro breakdown
+   - Water intake tracker with animations
+   - Meal prep checklist
+   - Alternative food suggestions
+   - Shopping list generator
+
+5. **Subscription (`/subscription`):**
+   - Feature comparison table
+   - Animated pricing cards
+   - FAQ accordion
+   - Payment method selection (simulated)
+   - Confirmation flow with success animation
+
+### **7. Performance & Optimization**
+
+**Requirements:**
+
+- Lazy loading for route components
+- Image optimization with loading placeholders
+- Memoization for expensive calculations
+- Debounced search inputs
+- Virtual scrolling for long lists
+- Service Worker for offline capability
+- Bundle size optimization (<200KB initial load)
+
+### **8. Error Handling & Edge Cases**
+
+**Implementation:**
+
+- Global error boundary with fallback UI
+- Network error simulation and handling
+- Form validation with helpful messages
+- Empty state designs for all data views
+- Loading skeletons for async operations
+- Graceful degradation for unsupported features
+- Session timeout handling
+
+### **9. Testing Considerations**
+
+**Structure for testability:**
+
+- Component isolation with proper props
+- Custom hooks for business logic
+- Pure utility functions
+- Mock service layer for API simulation
+- Accessibility testing setup
+- Component story files for Storybook
+
+### **10. Documentation Requirements**
+
+**Code Documentation:**
+
+- JSDoc comments for all exported functions
+- Interface documentation with examples
+- README with setup instructions
+- Component usage examples
+- Architecture decision records (ADRs)
+
+## **Deliverables**
+
+Generate a complete, production-quality codebase that includes:
+
+1. All source files with proper TypeScript typing
+2. Comprehensive mock data sets (minimum 20 exercises, 3 complete meal plans)
+3. Full translation files for English and Arabic
+4. Configuration files (tsconfig.json, tailwind.config.js, vite.config.ts)
+5. Package.json with all required dependencies
+6. README.md with setup and development instructions
+
+Each file should be presented in a separate code block with the full file path clearly indicated. The code must be clean, well-structured, follow React best practices, and be ready for immediate deployment as a prototype.
