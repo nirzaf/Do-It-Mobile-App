@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
@@ -119,13 +119,13 @@ export function ExerciseDetail() {
    * Complete a rep
    */
   const completeRep = () => {
-    if (currentRep < reps.reps) {
+    if (currentRep < reps) {
       setCurrentRep(prev => prev + 1);
     } else {
       // Set completed, start rest or move to next set
-      if (currentSet < reps.sets) {
+      if (currentSet < exercise.sets) {
         setIsResting(true);
-        setRestTimer(reps.rest);
+        setRestTimer(60); // Default 60 seconds rest
         setCurrentSet(prev => prev + 1);
         setCurrentRep(0);
       } else {
@@ -239,7 +239,7 @@ export function ExerciseDetail() {
                   <Target className="h-4 w-4" />
                 </div>
                 <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
-                  {reps.sets}
+                  {exercise.sets}
                 </p>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
                   {t('sets')}
@@ -250,7 +250,7 @@ export function ExerciseDetail() {
                   <RotateCcw className="h-4 w-4" />
                 </div>
                 <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
-                  {reps.reps}
+                  {reps}
                 </p>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
                   {t('reps')}
@@ -261,7 +261,7 @@ export function ExerciseDetail() {
                   <Clock className="h-4 w-4" />
                 </div>
                 <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
-                  {reps.rest}s
+                  60s
                 </p>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
                   {t('rest')}
@@ -315,7 +315,7 @@ export function ExerciseDetail() {
                       {t('currentSet')}
                     </p>
                     <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-                      {currentSet} / {reps.sets}
+                      {currentSet} / {exercise.sets}
                     </p>
                   </div>
                   <div>
@@ -323,7 +323,7 @@ export function ExerciseDetail() {
                       {t('currentRep')}
                     </p>
                     <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-                      {currentRep} / {reps.reps}
+                      {currentRep} / {reps}
                     </p>
                   </div>
                 </div>
@@ -333,7 +333,7 @@ export function ExerciseDetail() {
                   <div 
                     className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                     style={{ 
-                      width: `${((currentSet - 1) * reps.reps + currentRep) / (reps.sets * reps.reps) * 100}%` 
+                      width: `${((currentSet - 1) * reps + currentRep) / (exercise.sets * reps) * 100}%` 
                     }}
                   ></div>
                 </div>

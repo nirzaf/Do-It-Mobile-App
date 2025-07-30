@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
@@ -6,7 +6,7 @@ import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
 import type { UserProfile } from '../types';
-import { Camera, Video, Upload, Check } from 'lucide-react';
+import { Camera, Video, Check } from 'lucide-react';
 
 /**
  * Media upload component for profile photos and progress videos

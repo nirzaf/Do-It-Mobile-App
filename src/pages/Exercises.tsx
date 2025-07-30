@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent } from '../components/ui/Card';
@@ -73,7 +73,7 @@ export function Exercises() {
    */
   const getExerciseReps = (exercise: Exercise, goal: string) => {
     const goalKey = goal.toLowerCase().replace(' ', '') as keyof Exercise['reps'];
-    return exercise.reps[goalKey] || exercise.reps.loseWeight;
+    return exercise.reps[goalKey] || exercise.reps['Lose Weight'];
   };
 
   /**
@@ -196,11 +196,11 @@ export function Exercises() {
                         <div className="flex items-center space-x-4 text-xs text-slate-600 dark:text-slate-400">
                           <div className="flex items-center space-x-1">
                             <Target className="h-3 w-3" />
-                            <span>{reps.sets}x{reps.reps}</span>
+                            <span>{exercise.sets}x{reps}</span>
                           </div>
                           <div className="flex items-center space-x-1">
                             <Clock className="h-3 w-3" />
-                            <span>{reps.rest}s {t('rest')}</span>
+                            <span>60s {t('rest')}</span>
                           </div>
                         </div>
                       </div>

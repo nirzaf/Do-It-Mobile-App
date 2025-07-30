@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
 import { calculateBMI, calculateDailyCalories, calculateWaterIntake, generatePlan } from '../lib/utils';
-import type { Plan } from '../types';
+
 import { 
   User, 
   Target, 

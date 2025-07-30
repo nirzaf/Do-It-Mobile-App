@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
@@ -126,8 +126,8 @@ export function Profile() {
    * Calculate user metrics
    */
   const bmi = calculateBMI(user.weight, user.height);
-  const dailyCalories = calculateDailyCalories(user.weight, user.height, user.age, user.gender, user.activityLevel);
-  const waterIntake = calculateWaterIntake(user.weight, user.activityLevel);
+  const dailyCalories = calculateDailyCalories(user);
+  const waterIntake = calculateWaterIntake(user.weight);
 
   /**
    * Get BMI status and color

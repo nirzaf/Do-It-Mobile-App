@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
@@ -92,7 +92,7 @@ export function DietPlan() {
    * Calculate total calories for a meal
    */
   const calculateMealCalories = (meal: Meal) => {
-    return meal.foods.reduce((total, food) => total + food.calories, 0);
+    return meal.calories;
   };
 
   /**
@@ -112,10 +112,10 @@ export function DietPlan() {
         {/* Plan Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-            {userPlan.diet.name}
+            {t('dietPlan')}
           </h1>
           <p className="text-slate-600 dark:text-slate-400">
-            {userPlan.diet.description}
+            {t('personalizedDietPlan')}
           </p>
         </div>
 

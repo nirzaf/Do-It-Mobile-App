@@ -13,6 +13,7 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   helperText?: string;
   options: SelectOption[];
   placeholder?: string;
+  icon?: React.ReactNode;
 }
 
 /**
@@ -26,7 +27,7 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
  * @param props - Additional select props
  */
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, error, helperText, options, placeholder, className, ...props }, ref) => {
+  ({ label, error, helperText, options, placeholder, icon, className, ...props }, ref) => {
     const selectId = props.id || `select-${Math.random().toString(36).substr(2, 9)}`;
     
     return (
@@ -40,12 +41,18 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           </label>
         )}
         <div className="relative">
+          {icon && (
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 dark:text-slate-500 z-10">
+              {icon}
+            </div>
+          )}
           <select
             ref={ref}
             id={selectId}
             className={cn(
               'flex h-10 w-full appearance-none rounded-md border border-slate-300 bg-white px-3 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:focus:ring-blue-600',
               error && 'border-red-500 focus:ring-red-500 dark:border-red-500',
+              icon ? 'pl-10' : '',
               className
             )}
             {...props}
