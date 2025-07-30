@@ -3,17 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
+import { HydrationTracker } from '../components/features/HydrationTracker';
+import { MacroCalculator } from '../components/features/MacroCalculator';
+import { MealDetail } from '../components/features/MealDetail';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../hooks/useUser';
 import { generatePlan } from '../lib/utils';
 import type { Plan, Meal } from '../types';
-import { 
+import {
   Clock,
   Utensils,
   Zap,
   Scale,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Droplets,
+  BarChart3,
+  ShoppingCart,
+  BookOpen,
+  Target
 } from 'lucide-react';
 
 /**
@@ -26,6 +34,8 @@ export function DietPlan() {
   const [userPlan, setUserPlan] = useState<Plan | null>(null);
   const [selectedDay, setSelectedDay] = useState<number>(0);
   const [expandedMeal, setExpandedMeal] = useState<number | null>(null);
+  const [selectedMeal, setSelectedMeal] = useState<any | null>(null);
+  const [activeTab, setActiveTab] = useState<'meals' | 'hydration' | 'macros' | 'shopping'>('meals');
 
   useEffect(() => {
     if (!user) {
@@ -37,6 +47,16 @@ export function DietPlan() {
     const plan = generatePlan(user);
     setUserPlan(plan);
   }, [user, navigate]);
+
+  // Show meal detail if a meal is selected
+  if (selectedMeal) {
+    return (
+      <MealDetail
+        meal={selectedMeal}
+        onBack={() => setSelectedMeal(null)}
+      />
+    );
+  }
 
   if (!user || !userPlan) {
     return (
@@ -119,25 +139,56 @@ export function DietPlan() {
           </p>
         </div>
 
-        {/* Day Selector */}
+        {/* Tab Navigation */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3">
-            {t('selectDay')}
-          </h2>
-          <div className="flex space-x-2 overflow-x-auto pb-2">
-            {days.map((day, index) => (
-              <Button
-                key={day}
-                variant={selectedDay === index ? 'primary' : 'outline'}
-                size="sm"
-                onClick={() => setSelectedDay(index)}
-                className="whitespace-nowrap"
-              >
-                {day.slice(0, 3)}
-              </Button>
-            ))}
+          <div className="flex space-x-1 bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+            {([
+              { key: 'meals', icon: Utensils, label: t('diet.meals') },
+              { key: 'hydration', icon: Droplets, label: t('diet.hydration') },
+              { key: 'macros', icon: BarChart3, label: t('diet.macros') },
+              { key: 'shopping', icon: ShoppingCart, label: t('diet.shopping') }
+            ] as const).map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`flex-1 flex items-center justify-center space-x-2 py-2 px-3 rounded-md text-sm font-medium transition-colors ${
+                    activeTab === tab.key
+                      ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="hidden sm:inline">{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
+
+        {/* Tab Content */}
+        {activeTab === 'meals' && (
+          <>
+            {/* Day Selector */}
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                {t('selectDay')}
+              </h2>
+              <div className="flex space-x-2 overflow-x-auto pb-2">
+                {days.map((day, index) => (
+                  <Button
+                    key={day}
+                    variant={selectedDay === index ? 'primary' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedDay(index)}
+                    className="whitespace-nowrap"
+                  >
+                    {day.slice(0, 3)}
+                  </Button>
+                ))}
+              </div>
+            </div>
 
         {/* Meals for Selected Day */}
         <div className="space-y-4">
