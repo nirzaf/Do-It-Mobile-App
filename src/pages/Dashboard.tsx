@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../hooks/useUser';
 import { calculateBMI, calculateDailyCalories, calculateWaterIntake, generatePlan } from '../lib/utils';
 
 import { 
@@ -41,7 +41,7 @@ export function Dashboard() {
     const water = calculateWaterIntake(user.weight);
     
     setBmi(userBMI);
-    setDailyCalories(calories);
+    setDailyCalories(calories.target);
     setWaterIntake(water);
 
     // Generate user plan
@@ -72,7 +72,7 @@ export function Dashboard() {
         {/* Welcome Section */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-            {t('welcome')}, {user.name}!
+            {t('welcome')}, {user.firstName}!
           </h1>
           <p className="text-slate-600 dark:text-slate-400">
             {t('readyToStart')}

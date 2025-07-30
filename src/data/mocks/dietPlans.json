@@ -1,0 +1,293 @@
+[
+  {
+    "id": "diet_plan_weight_loss",
+    "name": {
+      "en": "Weight Loss Plan",
+      "ar": "خطة إنقاص الوزن"
+    },
+    "goal": "loseWeight",
+    "description": {
+      "en": "A balanced diet plan designed for sustainable weight loss",
+      "ar": "خطة غذائية متوازنة مصممة لإنقاص الوزن المستدام"
+    },
+    "duration": 30,
+    "targetCalories": 1500,
+    "macroDistribution": {
+      "protein": 30,
+      "carbs": 40,
+      "fats": 30
+    },
+    "dailyMeals": [
+      {
+        "mealType": "breakfast",
+        "time": "07:00",
+        "meals": ["meal_003", "meal_005"],
+        "calories": 430,
+        "macros": {
+          "protein": 25,
+          "carbs": 57,
+          "fats": 12
+        }
+      },
+      {
+        "mealType": "snack",
+        "time": "10:00",
+        "meals": ["snack_001"],
+        "calories": 150,
+        "macros": {
+          "protein": 6,
+          "carbs": 15,
+          "fats": 8
+        }
+      },
+      {
+        "mealType": "lunch",
+        "time": "13:00",
+        "meals": ["meal_001", "meal_002"],
+        "calories": 385,
+        "macros": {
+          "protein": 39,
+          "carbs": 39,
+          "fats": 9.6
+        }
+      },
+      {
+        "mealType": "snack",
+        "time": "16:00",
+        "meals": ["snack_002"],
+        "calories": 120,
+        "macros": {
+          "protein": 3,
+          "carbs": 12,
+          "fats": 7
+        }
+      },
+      {
+        "mealType": "dinner",
+        "time": "19:00",
+        "meals": ["meal_004"],
+        "calories": 350,
+        "macros": {
+          "protein": 25,
+          "carbs": 30,
+          "fats": 15
+        }
+      }
+    ],
+    "hydration": {
+      "dailyWater": 2.5,
+      "recommendations": [
+        {
+          "en": "Drink a glass of water before each meal",
+          "ar": "اشرب كوب ماء قبل كل وجبة"
+        },
+        {
+          "en": "Carry a water bottle throughout the day",
+          "ar": "احمل زجاجة ماء طوال اليوم"
+        }
+      ]
+    },
+    "supplements": [
+      {
+        "name": {
+          "en": "Multivitamin",
+          "ar": "فيتامينات متعددة"
+        },
+        "dosage": "1 tablet daily",
+        "timing": "with breakfast"
+      },
+      {
+        "name": {
+          "en": "Omega-3",
+          "ar": "أوميغا 3"
+        },
+        "dosage": "1000mg",
+        "timing": "with dinner"
+      }
+    ],
+    "guidelines": [
+      {
+        "en": "Eat slowly and mindfully",
+        "ar": "كل ببطء وبوعي"
+      },
+      {
+        "en": "Include vegetables in every meal",
+        "ar": "أدرج الخضار في كل وجبة"
+      },
+      {
+        "en": "Avoid processed foods",
+        "ar": "تجنب الأطعمة المصنعة"
+      }
+    ],
+    "restrictions": [
+      {
+        "en": "Limit sugar intake to less than 25g per day",
+        "ar": "قلل تناول السكر إلى أقل من 25 جرام يومياً"
+      },
+      {
+        "en": "Avoid fried foods",
+        "ar": "تجنب الأطعمة المقلية"
+      }
+    ],
+    "createdBy": "nutritionist_001",
+    "difficulty": "medium",
+    "tags": ["weight_loss", "balanced", "sustainable"],
+    "isVegetarianFriendly": true,
+    "isHalalFriendly": true
+  },
+  {
+    "id": "diet_plan_muscle_gain",
+    "name": {
+      "en": "Muscle Gain Plan",
+      "ar": "خطة بناء العضلات"
+    },
+    "goal": "gainMuscle",
+    "description": {
+      "en": "High-protein diet plan for muscle building and strength",
+      "ar": "خطة غذائية عالية البروتين لبناء العضلات والقوة"
+    },
+    "duration": 60,
+    "targetCalories": 2200,
+    "macroDistribution": {
+      "protein": 35,
+      "carbs": 40,
+      "fats": 25
+    },
+    "dailyMeals": [
+      {
+        "mealType": "breakfast",
+        "time": "07:00",
+        "meals": ["meal_005", "protein_shake_001"],
+        "calories": 480,
+        "macros": {
+          "protein": 35,
+          "carbs": 50,
+          "fats": 12
+        }
+      },
+      {
+        "mealType": "snack",
+        "time": "10:00",
+        "meals": ["snack_003"],
+        "calories": 200,
+        "macros": {
+          "protein": 15,
+          "carbs": 10,
+          "fats": 12
+        }
+      },
+      {
+        "mealType": "lunch",
+        "time": "13:00",
+        "meals": ["meal_001", "meal_002", "meal_006"],
+        "calories": 650,
+        "macros": {
+          "protein": 55,
+          "carbs": 65,
+          "fats": 18
+        }
+      },
+      {
+        "mealType": "pre_workout",
+        "time": "16:00",
+        "meals": ["pre_workout_001"],
+        "calories": 180,
+        "macros": {
+          "protein": 8,
+          "carbs": 30,
+          "fats": 3
+        }
+      },
+      {
+        "mealType": "post_workout",
+        "time": "18:00",
+        "meals": ["post_workout_001"],
+        "calories": 250,
+        "macros": {
+          "protein": 25,
+          "carbs": 25,
+          "fats": 5
+        }
+      },
+      {
+        "mealType": "dinner",
+        "time": "20:00",
+        "meals": ["meal_004", "meal_007"],
+        "calories": 550,
+        "macros": {
+          "protein": 40,
+          "carbs": 45,
+          "fats": 22
+        }
+      }
+    ],
+    "hydration": {
+      "dailyWater": 3.5,
+      "recommendations": [
+        {
+          "en": "Drink extra water during workouts",
+          "ar": "اشرب ماء إضافي أثناء التمارين"
+        },
+        {
+          "en": "Hydrate immediately after training",
+          "ar": "ارتو فوراً بعد التدريب"
+        }
+      ]
+    },
+    "supplements": [
+      {
+        "name": {
+          "en": "Whey Protein",
+          "ar": "بروتين مصل اللبن"
+        },
+        "dosage": "25-30g",
+        "timing": "post-workout"
+      },
+      {
+        "name": {
+          "en": "Creatine",
+          "ar": "كرياتين"
+        },
+        "dosage": "5g",
+        "timing": "daily"
+      },
+      {
+        "name": {
+          "en": "BCAA",
+          "ar": "أحماض أمينية متفرعة"
+        },
+        "dosage": "10g",
+        "timing": "during workout"
+      }
+    ],
+    "guidelines": [
+      {
+        "en": "Eat protein with every meal",
+        "ar": "تناول البروتين مع كل وجبة"
+      },
+      {
+        "en": "Time carbs around workouts",
+        "ar": "وقت الكربوهيدرات حول التمارين"
+      },
+      {
+        "en": "Get adequate sleep for recovery",
+        "ar": "احصل على نوم كافٍ للتعافي"
+      }
+    ],
+    "restrictions": [
+      {
+        "en": "Avoid excessive cardio",
+        "ar": "تجنب الكارديو المفرط"
+      },
+      {
+        "en": "Don't skip meals",
+        "ar": "لا تتخط الوجبات"
+      }
+    ],
+    "createdBy": "nutritionist_002",
+    "difficulty": "hard",
+    "tags": ["muscle_gain", "high_protein", "performance"],
+    "isVegetarianFriendly": false,
+    "isHalalFriendly": true
+  }
+]

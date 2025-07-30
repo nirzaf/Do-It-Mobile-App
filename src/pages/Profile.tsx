@@ -7,9 +7,9 @@ import { Select } from '../components/ui/Select';
 import { Modal } from '../components/ui/Modal';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../hooks/useUser';
 import type { UserProfile } from '../types';
-import { calculateBMI, calculateDailyCalories, calculateWaterIntake } from '../lib/utils';
+import { calculateBMI, calculateDailyCalories, calculateWaterIntake, getAge } from '../lib/utils';
 import { 
   User,
   Edit3,
@@ -75,12 +75,23 @@ export function Profile() {
   const validateForm = (): boolean => {
     const newErrors: { [key: string]: string } = {};
 
-    if (!editForm?.name.trim()) {
-      newErrors.name = t('nameRequired');
+    if (!editForm?.firstName.trim()) {
+      newErrors.firstName = t('firstNameRequired');
     }
 
-    if (!editForm?.age || editForm.age < 13 || editForm.age > 100) {
-      newErrors.age = t('ageInvalid');
+    if (!editForm?.lastName.trim()) {
+      newErrors.lastName = t('lastNameRequired');
+    }
+
+    if (!editForm?.birthDate) {
+      newErrors.birthDate = t('birthDateRequired');
+    } else {
+      const birthDate = new Date(editForm.birthDate);
+      const today = new Date();
+      const age = today.getFullYear() - birthDate.getFullYear();
+      if (age < 13 || age > 100) {
+        newErrors.birthDate = t('ageInvalid');
+      }
     }
 
     if (!editForm?.weight || editForm.weight < 30 || editForm.weight > 300) {
@@ -155,9 +166,9 @@ export function Profile() {
               {/* Profile Photo */}
               <div className="relative">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  {user.profilePhoto ? (
+                  {user.profilePhotoUrl ? (
                     <img 
-                      src={user.profilePhoto} 
+                      src={user.profilePhotoUrl}
                       alt="Profile" 
                       className="w-full h-full rounded-full object-cover"
                     />
@@ -175,14 +186,14 @@ export function Profile() {
               {/* User Info */}
               <div className="flex-1">
                 <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">
-                  {user.name}
+                  {user.firstName} {user.lastName}
                 </h1>
                 <p className="text-slate-600 dark:text-slate-400">
                   {t(user.goal.toLowerCase().replace(' ', ''))}
                 </p>
                 <div className="flex items-center space-x-2 mt-1">
                   <span className="text-sm text-slate-500 dark:text-slate-400">
-                    {user.age} {t('yearsOld')} • {user.gender === 'male' ? t('male') : t('female')}
+                    {getAge(user.birthDate)} {t('yearsOld')} • {user.gender === 'male' ? t('male') : t('female')}
                   </span>
                 </div>
               </div>
@@ -230,7 +241,7 @@ export function Profile() {
                 <Zap className="h-6 w-6 text-orange-500 mx-auto mb-2" />
                 <p className="text-sm text-slate-600 dark:text-slate-400">{t('calories')}</p>
                 <p className="text-xl font-bold text-slate-900 dark:text-slate-100">
-                  {dailyCalories}
+                  {dailyCalories.target}
                 </p>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   {t('perDay')}
@@ -273,21 +284,30 @@ export function Profile() {
             {isEditing ? (
               // Edit Mode
               <>
-                <Input
-                  label={t('name')}
-                  value={editForm.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  error={errors.name}
-                  icon={<User className="h-4 w-4" />}
-                />
-                
                 <div className="grid grid-cols-2 gap-3">
                   <Input
-                    label={t('age')}
-                    type="number"
-                    value={editForm.age.toString()}
-                    onChange={(e) => handleInputChange('age', parseInt(e.target.value) || 0)}
-                    error={errors.age}
+                    label={t('firstName')}
+                    value={editForm.firstName}
+                    onChange={(e) => handleInputChange('firstName', e.target.value)}
+                    error={errors.firstName}
+                    icon={<User className="h-4 w-4" />}
+                  />
+                  <Input
+                    label={t('lastName')}
+                    value={editForm.lastName}
+                    onChange={(e) => handleInputChange('lastName', e.target.value)}
+                    error={errors.lastName}
+                    icon={<User className="h-4 w-4" />}
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <Input
+                    label={t('birthDate')}
+                    type="date"
+                    value={editForm.birthDate}
+                    onChange={(e) => handleInputChange('birthDate', e.target.value)}
+                    error={errors.birthDate}
                     icon={<Calendar className="h-4 w-4" />}
                   />
                   

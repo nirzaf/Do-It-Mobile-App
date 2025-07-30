@@ -4,13 +4,24 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { useUser } from '../context/UserContext';
-import type { UserProfile } from '../types';
+import { useUser } from '../hooks/useUser';
+import type { UserProfile, UserRegistrationData } from '../types';
 import { Camera, Video, Check } from 'lucide-react';
 
 /**
  * Media upload component for profile photos and progress videos
  */
+// Helper function to map registration goal to UserProfile goal
+function mapGoalToUserProfile(goal: string): 'lose_weight' | 'gain_weight' | 'gain_muscle' | 'extra_diet' {
+  const goalMap: Record<string, 'lose_weight' | 'gain_weight' | 'gain_muscle' | 'extra_diet'> = {
+    'loseWeight': 'lose_weight',
+    'gainWeight': 'gain_weight',
+    'gainMuscle': 'gain_muscle',
+    'extraDiet': 'extra_diet'
+  };
+  return goalMap[goal] || 'lose_weight';
+}
+
 export function MediaUpload() {
   const navigate = useNavigate();
   const { t } = useLanguage();
@@ -71,13 +82,30 @@ export function MediaUpload() {
       return;
     }
 
-    const profileData = JSON.parse(profileDataStr);
-    
-    // Create complete user profile
+    const registrationData: UserRegistrationData = JSON.parse(profileDataStr);
+
+    // Create complete user profile from registration data
     const userProfile: UserProfile = {
-      ...profileData,
-      profilePhoto: uploadedPhoto ? 'https://placehold.co/200x200/3b82f6/ffffff?text=Profile' : undefined,
+      id: `user_${Date.now()}`,
+      firstName: registrationData.firstName,
+      lastName: registrationData.lastName,
+      email: registrationData.email,
+      phone: registrationData.phone,
+      gender: registrationData.gender,
+      birthDate: registrationData.birthDate,
+      weight: registrationData.weight,
+      height: registrationData.height,
+      goal: mapGoalToUserProfile(registrationData.goal),
+      activityLevel: registrationData.activityLevel,
+      profilePhotoUrl: uploadedPhoto ? 'https://placehold.co/200x200/3b82f6/ffffff?text=Profile' : undefined,
       progressVideos: uploadedVideos ? ['https://placehold.co/400x300/3b82f6/ffffff?text=Video+1'] : undefined,
+      preferences: {
+        language: 'en', // Default, can be changed later
+        theme: 'light',
+        notifications: true,
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
 
     // Save user profile to context and localStorage

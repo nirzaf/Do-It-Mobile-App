@@ -1,0 +1,277 @@
+[
+  {
+    "id": "training_plan_beginner",
+    "name": {
+      "en": "Beginner Full Body Workout",
+      "ar": "تمارين الجسم الكامل للمبتدئين"
+    },
+    "goal": "loseWeight",
+    "level": "beginner",
+    "description": {
+      "en": "A comprehensive full-body workout plan for beginners",
+      "ar": "خطة تمارين شاملة للجسم الكامل للمبتدئين"
+    },
+    "duration": 4,
+    "frequency": 3,
+    "estimatedDuration": 45,
+    "equipment": ["bodyweight", "dumbbells"],
+    "weeklySchedule": [
+      {
+        "day": "monday",
+        "name": {
+          "en": "Full Body A",
+          "ar": "الجسم الكامل أ"
+        },
+        "exercises": [
+          {
+            "exerciseId": "ex_001",
+            "sets": 3,
+            "reps": "8-12",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Focus on proper form",
+              "ar": "ركز على الشكل الصحيح"
+            }
+          },
+          {
+            "exerciseId": "ex_002",
+            "sets": 3,
+            "reps": "12-15",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Go as deep as comfortable",
+              "ar": "انزل بقدر ما هو مريح"
+            }
+          },
+          {
+            "exerciseId": "ex_006",
+            "sets": 3,
+            "reps": "10 each leg",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Alternate legs",
+              "ar": "بدل بين الساقين"
+            }
+          },
+          {
+            "exerciseId": "ex_007",
+            "sets": 3,
+            "reps": "30-45 seconds",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Keep body straight",
+              "ar": "حافظ على استقامة الجسم"
+            }
+          }
+        ],
+        "warmup": [
+          {
+            "exercise": "light_cardio",
+            "duration": 5,
+            "description": {
+              "en": "5 minutes of light walking or marching",
+              "ar": "5 دقائق من المشي الخفيف أو المسيرة"
+            }
+          },
+          {
+            "exercise": "dynamic_stretching",
+            "duration": 5,
+            "description": {
+              "en": "Arm circles, leg swings, torso twists",
+              "ar": "دوائر الذراع، أرجحة الساق، التواء الجذع"
+            }
+          }
+        ],
+        "cooldown": [
+          {
+            "exercise": "static_stretching",
+            "duration": 10,
+            "description": {
+              "en": "Hold each stretch for 30 seconds",
+              "ar": "احتفظ بكل تمدد لمدة 30 ثانية"
+            }
+          }
+        ]
+      },
+      {
+        "day": "wednesday",
+        "name": {
+          "en": "Full Body B",
+          "ar": "الجسم الكامل ب"
+        },
+        "exercises": [
+          {
+            "exerciseId": "ex_003",
+            "sets": 3,
+            "reps": "5-8",
+            "restSeconds": 90,
+            "notes": {
+              "en": "Use assistance if needed",
+              "ar": "استخدم المساعدة إذا لزم الأمر"
+            }
+          },
+          {
+            "exerciseId": "ex_002",
+            "sets": 3,
+            "reps": "15-20",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Focus on controlled movement",
+              "ar": "ركز على الحركة المتحكم بها"
+            }
+          },
+          {
+            "exerciseId": "ex_001",
+            "sets": 3,
+            "reps": "10-15",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Modify on knees if needed",
+              "ar": "عدل على الركبتين إذا لزم الأمر"
+            }
+          },
+          {
+            "exerciseId": "ex_008",
+            "sets": 3,
+            "reps": "5-8",
+            "restSeconds": 90,
+            "notes": {
+              "en": "Start slow and build up",
+              "ar": "ابدأ ببطء وازد تدريجياً"
+            }
+          }
+        ],
+        "warmup": [
+          {
+            "exercise": "light_cardio",
+            "duration": 5,
+            "description": {
+              "en": "5 minutes of light jogging in place",
+              "ar": "5 دقائق من الجري الخفيف في المكان"
+            }
+          },
+          {
+            "exercise": "mobility",
+            "duration": 5,
+            "description": {
+              "en": "Joint mobility exercises",
+              "ar": "تمارين حركة المفاصل"
+            }
+          }
+        ],
+        "cooldown": [
+          {
+            "exercise": "stretching",
+            "duration": 10,
+            "description": {
+              "en": "Full body stretching routine",
+              "ar": "روتين تمدد الجسم الكامل"
+            }
+          }
+        ]
+      },
+      {
+        "day": "friday",
+        "name": {
+          "en": "Full Body C",
+          "ar": "الجسم الكامل ج"
+        },
+        "exercises": [
+          {
+            "exerciseId": "ex_006",
+            "sets": 3,
+            "reps": "12 each leg",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Focus on balance",
+              "ar": "ركز على التوازن"
+            }
+          },
+          {
+            "exerciseId": "ex_007",
+            "sets": 3,
+            "reps": "45-60 seconds",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Breathe steadily",
+              "ar": "تنفس بانتظام"
+            }
+          },
+          {
+            "exerciseId": "ex_001",
+            "sets": 3,
+            "reps": "12-15",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Full range of motion",
+              "ar": "مدى حركة كامل"
+            }
+          },
+          {
+            "exerciseId": "ex_002",
+            "sets": 3,
+            "reps": "15-20",
+            "restSeconds": 60,
+            "notes": {
+              "en": "Squeeze glutes at top",
+              "ar": "اضغط عضلات المؤخرة في الأعلى"
+            }
+          }
+        ],
+        "warmup": [
+          {
+            "exercise": "activation",
+            "duration": 5,
+            "description": {
+              "en": "Muscle activation exercises",
+              "ar": "تمارين تنشيط العضلات"
+            }
+          }
+        ],
+        "cooldown": [
+          {
+            "exercise": "relaxation",
+            "duration": 10,
+            "description": {
+              "en": "Deep breathing and relaxation",
+              "ar": "تنفس عميق واسترخاء"
+            }
+          }
+        ]
+      }
+    ],
+    "progressionGuidelines": [
+      {
+        "en": "Increase reps by 1-2 each week",
+        "ar": "زد التكرارات بـ 1-2 كل أسبوع"
+      },
+      {
+        "en": "Add extra set when you can complete all reps easily",
+        "ar": "أضف مجموعة إضافية عندما تتمكن من إكمال جميع التكرارات بسهولة"
+      },
+      {
+        "en": "Focus on form before increasing intensity",
+        "ar": "ركز على الشكل قبل زيادة الشدة"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Rest at least one day between workouts",
+        "ar": "استرح يوماً واحداً على الأقل بين التمارين"
+      },
+      {
+        "en": "Listen to your body and adjust as needed",
+        "ar": "استمع لجسمك وعدل حسب الحاجة"
+      },
+      {
+        "en": "Stay hydrated throughout your workout",
+        "ar": "حافظ على الترطيب طوال التمرين"
+      }
+    ],
+    "targetMuscles": ["full_body"],
+    "difficulty": "beginner",
+    "tags": ["full_body", "beginner_friendly", "bodyweight"],
+    "estimatedCaloriesBurn": 200,
+    "createdBy": "trainer_001"
+  }
+]

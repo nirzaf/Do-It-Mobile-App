@@ -23,9 +23,12 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
+  "other": "Other",
   "weight": "Weight (kg)",
   "height": "Height (cm)",
   "age": "Age",
+  "birthDate": "Birth Date",
+  "activityLevel": "Activity Level",
   "email": "Email",
   "phone": "Phone Number",
   "goal": "Goal",
@@ -156,5 +159,51 @@
   "prioritySupport": "Priority Support",
   "subscriptionConfirmation": "You have subscribed to the {packageName} package!",
   "backToDashboard": "Back to Dashboard",
-  "upgradeAccount": "Upgrade your account"
+  "upgradeAccount": "Upgrade your account",
+  "activityLevels": {
+    "sedentary": {
+      "name": "Sedentary",
+      "description": "Little or no exercise"
+    },
+    "light": {
+      "name": "Light",
+      "description": "Light exercise 1-3 days/week"
+    },
+    "moderate": {
+      "name": "Moderate",
+      "description": "Moderate exercise 3-5 days/week"
+    },
+    "active": {
+      "name": "Active",
+      "description": "Hard exercise 6-7 days/week"
+    },
+    "veryActive": {
+      "name": "Very Active",
+      "description": "Very hard exercise, physical job"
+    }
+  },
+  "duration": "Duration",
+  "completed": "Completed",
+  "skipRest": "Skip Rest",
+  "exerciseDemo": "Exercise Demo",
+  "setProgress": "Set Progress",
+  "rest": "Rest",
+  "completedSets": "Completed Sets",
+  "completeSet": "Complete Set",
+  "nextExercise": "Next Exercise",
+  "finishWorkout": "Finish Workout",
+  "workoutCompleted": "Workout Completed!",
+  "totalTime": "Total Time",
+  "exercisesCompleted": "Exercises",
+  "backToTraining": "Back to Training",
+  "workout": "Workout",
+  "tips": "Tips",
+  "reset": "Reset",
+  "restTips": "Rest Tips",
+  "breatheDeeply": "Breathe deeply and relax",
+  "stayHydrated": "Stay hydrated",
+  "prepareNextSet": "Prepare for the next set",
+  "videoError": "Video unavailable",
+  "playbackSpeed": "Playback Speed",
+  "speed": "speed"
 }

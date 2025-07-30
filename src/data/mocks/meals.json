@@ -1,0 +1,294 @@
+[
+  {
+    "id": "meal_001",
+    "name": {
+      "en": "Grilled Chicken Breast",
+      "ar": "صدر دجاج مشوي"
+    },
+    "category": "protein",
+    "mealType": "lunch",
+    "cuisine": "international",
+    "calories": 165,
+    "macros": {
+      "protein": 31,
+      "carbs": 0,
+      "fats": 3.6,
+      "fiber": 0
+    },
+    "servingSize": "100g",
+    "ingredients": [
+      {
+        "name": {
+          "en": "Chicken breast",
+          "ar": "صدر دجاج"
+        },
+        "amount": "100g",
+        "calories": 165
+      }
+    ],
+    "instructions": [
+      {
+        "en": "Season chicken breast with salt and pepper",
+        "ar": "تبل صدر الدجاج بالملح والفلفل"
+      },
+      {
+        "en": "Grill for 6-8 minutes per side",
+        "ar": "اشوه لمدة 6-8 دقائق لكل جانب"
+      },
+      {
+        "en": "Let rest for 5 minutes before serving",
+        "ar": "اتركه يرتاح لمدة 5 دقائق قبل التقديم"
+      }
+    ],
+    "prepTime": 15,
+    "cookTime": 16,
+    "difficulty": "easy",
+    "tags": ["high_protein", "low_carb", "gluten_free"],
+    "allergens": [],
+    "isVegetarian": false,
+    "isVegan": false,
+    "isHalal": true,
+    "photoUrl": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600&h=400&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=300&h=200&fit=crop"
+  },
+  {
+    "id": "meal_002",
+    "name": {
+      "en": "Quinoa Salad Bowl",
+      "ar": "سلطة الكينوا"
+    },
+    "category": "carbs",
+    "mealType": "lunch",
+    "cuisine": "mediterranean",
+    "calories": 220,
+    "macros": {
+      "protein": 8,
+      "carbs": 39,
+      "fats": 6,
+      "fiber": 5
+    },
+    "servingSize": "150g",
+    "ingredients": [
+      {
+        "name": {
+          "en": "Quinoa",
+          "ar": "كينوا"
+        },
+        "amount": "100g",
+        "calories": 120
+      },
+      {
+        "name": {
+          "en": "Mixed vegetables",
+          "ar": "خضار مشكلة"
+        },
+        "amount": "50g",
+        "calories": 25
+      },
+      {
+        "name": {
+          "en": "Olive oil",
+          "ar": "زيت زيتون"
+        },
+        "amount": "1 tbsp",
+        "calories": 75
+      }
+    ],
+    "instructions": [
+      {
+        "en": "Cook quinoa according to package instructions",
+        "ar": "اطبخ الكينوا حسب التعليمات على العبوة"
+      },
+      {
+        "en": "Mix with fresh vegetables",
+        "ar": "اخلط مع الخضار الطازجة"
+      },
+      {
+        "en": "Drizzle with olive oil and season",
+        "ar": "رش بزيت الزيتون والتوابل"
+      }
+    ],
+    "prepTime": 10,
+    "cookTime": 15,
+    "difficulty": "easy",
+    "tags": ["high_fiber", "vegetarian", "gluten_free"],
+    "allergens": [],
+    "isVegetarian": true,
+    "isVegan": true,
+    "isHalal": true,
+    "photoUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=200&fit=crop"
+  },
+  {
+    "id": "meal_003",
+    "name": {
+      "en": "Greek Yogurt with Berries",
+      "ar": "زبادي يوناني مع التوت"
+    },
+    "category": "protein",
+    "mealType": "breakfast",
+    "cuisine": "mediterranean",
+    "calories": 150,
+    "macros": {
+      "protein": 15,
+      "carbs": 12,
+      "fats": 4,
+      "fiber": 3
+    },
+    "servingSize": "200g",
+    "ingredients": [
+      {
+        "name": {
+          "en": "Greek yogurt",
+          "ar": "زبادي يوناني"
+        },
+        "amount": "150g",
+        "calories": 100
+      },
+      {
+        "name": {
+          "en": "Mixed berries",
+          "ar": "توت مشكل"
+        },
+        "amount": "50g",
+        "calories": 50
+      }
+    ],
+    "instructions": [
+      {
+        "en": "Place yogurt in a bowl",
+        "ar": "ضع الزبادي في وعاء"
+      },
+      {
+        "en": "Top with fresh berries",
+        "ar": "زين بالتوت الطازج"
+      }
+    ],
+    "prepTime": 2,
+    "cookTime": 0,
+    "difficulty": "easy",
+    "tags": ["high_protein", "probiotic", "antioxidants"],
+    "allergens": ["dairy"],
+    "isVegetarian": true,
+    "isVegan": false,
+    "isHalal": true,
+    "photoUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=300&h=200&fit=crop"
+  },
+  {
+    "id": "meal_004",
+    "name": {
+      "en": "Salmon with Sweet Potato",
+      "ar": "سلمون مع البطاطا الحلوة"
+    },
+    "category": "protein",
+    "mealType": "dinner",
+    "cuisine": "international",
+    "calories": 350,
+    "macros": {
+      "protein": 25,
+      "carbs": 30,
+      "fats": 15,
+      "fiber": 4
+    },
+    "servingSize": "250g",
+    "ingredients": [
+      {
+        "name": {
+          "en": "Salmon fillet",
+          "ar": "فيليه سلمون"
+        },
+        "amount": "120g",
+        "calories": 200
+      },
+      {
+        "name": {
+          "en": "Sweet potato",
+          "ar": "بطاطا حلوة"
+        },
+        "amount": "130g",
+        "calories": 150
+      }
+    ],
+    "instructions": [
+      {
+        "en": "Bake sweet potato at 200°C for 25 minutes",
+        "ar": "اخبز البطاطا الحلوة على 200 درجة لمدة 25 دقيقة"
+      },
+      {
+        "en": "Pan-sear salmon for 4-5 minutes per side",
+        "ar": "اقلي السلمون لمدة 4-5 دقائق لكل جانب"
+      },
+      {
+        "en": "Serve together with vegetables",
+        "ar": "قدم معاً مع الخضار"
+      }
+    ],
+    "prepTime": 10,
+    "cookTime": 30,
+    "difficulty": "medium",
+    "tags": ["omega_3", "high_protein", "complex_carbs"],
+    "allergens": ["fish"],
+    "isVegetarian": false,
+    "isVegan": false,
+    "isHalal": false,
+    "photoUrl": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=300&h=200&fit=crop"
+  },
+  {
+    "id": "meal_005",
+    "name": {
+      "en": "Oatmeal with Nuts",
+      "ar": "شوفان مع المكسرات"
+    },
+    "category": "carbs",
+    "mealType": "breakfast",
+    "cuisine": "international",
+    "calories": 280,
+    "macros": {
+      "protein": 10,
+      "carbs": 45,
+      "fats": 8,
+      "fiber": 6
+    },
+    "servingSize": "200g",
+    "ingredients": [
+      {
+        "name": {
+          "en": "Rolled oats",
+          "ar": "شوفان"
+        },
+        "amount": "50g",
+        "calories": 190
+      },
+      {
+        "name": {
+          "en": "Mixed nuts",
+          "ar": "مكسرات مشكلة"
+        },
+        "amount": "20g",
+        "calories": 90
+      }
+    ],
+    "instructions": [
+      {
+        "en": "Cook oats with water or milk",
+        "ar": "اطبخ الشوفان مع الماء أو الحليب"
+      },
+      {
+        "en": "Top with chopped nuts",
+        "ar": "زين بالمكسرات المقطعة"
+      }
+    ],
+    "prepTime": 5,
+    "cookTime": 10,
+    "difficulty": "easy",
+    "tags": ["high_fiber", "sustained_energy", "heart_healthy"],
+    "allergens": ["nuts"],
+    "isVegetarian": true,
+    "isVegan": true,
+    "isHalal": true,
+    "photoUrl": "https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=600&h=400&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=300&h=200&fit=crop"
+  }
+]

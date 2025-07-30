@@ -1,0 +1,330 @@
+[
+  {
+    "id": "ex_001",
+    "name": {
+      "en": "Push-ups",
+      "ar": "تمرين الضغط"
+    },
+    "targetMuscle": ["chest", "triceps", "shoulders"],
+    "equipment": ["bodyweight"],
+    "difficulty": "beginner",
+    "sets": 3,
+    "reps": {
+      "loseWeight": "12-15",
+      "gainMuscle": "8-12",
+      "gainWeight": "6-10"
+    },
+    "restSeconds": 60,
+    "instructions": [
+      {
+        "en": "Start in a plank position with hands shoulder-width apart",
+        "ar": "ابدأ في وضعية البلانك مع وضع اليدين بعرض الكتفين"
+      },
+      {
+        "en": "Lower your body until chest nearly touches the floor",
+        "ar": "اخفض جسمك حتى يلامس الصدر الأرض تقريباً"
+      },
+      {
+        "en": "Push back up to starting position",
+        "ar": "ادفع جسمك للعودة إلى الوضعية الأولى"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Keep your core tight throughout the movement",
+        "ar": "حافظ على شد عضلات البطن طوال الحركة"
+      },
+      {
+        "en": "Don't let your hips sag or pike up",
+        "ar": "لا تدع الوركين يهبطان أو يرتفعان"
+      }
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+    "videoUrl": "https://example.com/videos/pushups.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop",
+    "calories": 8
+  },
+  {
+    "id": "ex_002",
+    "name": {
+      "en": "Squats",
+      "ar": "تمرين القرفصاء"
+    },
+    "targetMuscle": ["quadriceps", "glutes", "hamstrings"],
+    "equipment": ["bodyweight"],
+    "difficulty": "beginner",
+    "sets": 3,
+    "reps": {
+      "loseWeight": "15-20",
+      "gainMuscle": "12-15",
+      "gainWeight": "8-12"
+    },
+    "restSeconds": 60,
+    "instructions": [
+      {
+        "en": "Stand with feet shoulder-width apart",
+        "ar": "قف مع وضع القدمين بعرض الكتفين"
+      },
+      {
+        "en": "Lower your body as if sitting back into a chair",
+        "ar": "اخفض جسمك كما لو كنت تجلس على كرسي"
+      },
+      {
+        "en": "Return to standing position",
+        "ar": "عد إلى وضعية الوقوف"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Keep your chest up and knees behind toes",
+        "ar": "حافظ على رفع الصدر والركبتين خلف أصابع القدمين"
+      }
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
+    "videoUrl": "https://example.com/videos/squats.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=300&h=200&fit=crop",
+    "calories": 10
+  },
+  {
+    "id": "ex_003",
+    "name": {
+      "en": "Pull-ups",
+      "ar": "تمرين العقلة"
+    },
+    "targetMuscle": ["back", "biceps"],
+    "equipment": ["pull_up_bar"],
+    "difficulty": "intermediate",
+    "sets": 3,
+    "reps": {
+      "loseWeight": "6-10",
+      "gainMuscle": "5-8",
+      "gainWeight": "3-6"
+    },
+    "restSeconds": 90,
+    "instructions": [
+      {
+        "en": "Hang from pull-up bar with palms facing away",
+        "ar": "تعلق من العقلة مع توجيه راحتي اليدين للخارج"
+      },
+      {
+        "en": "Pull your body up until chin clears the bar",
+        "ar": "اسحب جسمك لأعلى حتى يتجاوز الذقن العقلة"
+      },
+      {
+        "en": "Lower yourself back to starting position",
+        "ar": "اخفض نفسك للعودة إلى الوضعية الأولى"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Engage your core and avoid swinging",
+        "ar": "شد عضلات البطن وتجنب التأرجح"
+      }
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+    "videoUrl": "https://example.com/videos/pullups.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=300&h=200&fit=crop",
+    "calories": 12
+  },
+  {
+    "id": "ex_004",
+    "name": {
+      "en": "Deadlifts",
+      "ar": "تمرين الرفعة الميتة"
+    },
+    "targetMuscle": ["hamstrings", "glutes", "back"],
+    "equipment": ["barbell"],
+    "difficulty": "intermediate",
+    "sets": 3,
+    "reps": {
+      "loseWeight": "8-12",
+      "gainMuscle": "6-8",
+      "gainWeight": "4-6"
+    },
+    "restSeconds": 120,
+    "instructions": [
+      {
+        "en": "Stand with feet hip-width apart, bar over mid-foot",
+        "ar": "قف مع وضع القدمين بعرض الوركين والبار فوق منتصف القدم"
+      },
+      {
+        "en": "Hinge at hips and grab the bar",
+        "ar": "انحن من الوركين وامسك البار"
+      },
+      {
+        "en": "Drive through heels to stand up straight",
+        "ar": "ادفع من خلال الكعبين للوقوف مستقيماً"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Keep the bar close to your body throughout",
+        "ar": "حافظ على البار قريباً من جسمك طوال الحركة"
+      }
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop",
+    "videoUrl": "https://example.com/videos/deadlifts.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=300&h=200&fit=crop",
+    "calories": 15
+  },
+  {
+    "id": "ex_005",
+    "name": {
+      "en": "Bench Press",
+      "ar": "تمرين البنش برس"
+    },
+    "targetMuscle": ["chest", "triceps", "shoulders"],
+    "equipment": ["barbell", "bench"],
+    "difficulty": "intermediate",
+    "sets": 3,
+    "reps": {
+      "loseWeight": "10-12",
+      "gainMuscle": "6-10",
+      "gainWeight": "4-8"
+    },
+    "restSeconds": 120,
+    "instructions": [
+      {
+        "en": "Lie on bench with feet flat on floor",
+        "ar": "استلق على البنش مع وضع القدمين مسطحتين على الأرض"
+      },
+      {
+        "en": "Grip bar slightly wider than shoulder-width",
+        "ar": "امسك البار بعرض أوسع قليلاً من الكتفين"
+      },
+      {
+        "en": "Lower bar to chest, then press up",
+        "ar": "اخفض البار إلى الصدر، ثم ادفعه لأعلى"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Keep your shoulder blades retracted",
+        "ar": "حافظ على سحب لوحي الكتف للخلف"
+      }
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+    "videoUrl": "https://example.com/videos/benchpress.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop",
+    "calories": 12
+  },
+  {
+    "id": "ex_006",
+    "name": {
+      "en": "Lunges",
+      "ar": "تمرين الطعن"
+    },
+    "targetMuscle": ["quadriceps", "glutes", "hamstrings"],
+    "equipment": ["bodyweight"],
+    "difficulty": "beginner",
+    "sets": 3,
+    "reps": {
+      "loseWeight": "12-16",
+      "gainMuscle": "10-12",
+      "gainWeight": "8-10"
+    },
+    "restSeconds": 60,
+    "instructions": [
+      {
+        "en": "Step forward with one leg",
+        "ar": "اخطو للأمام بساق واحدة"
+      },
+      {
+        "en": "Lower your hips until both knees are bent at 90 degrees",
+        "ar": "اخفض الوركين حتى تنحني الركبتان بزاوية 90 درجة"
+      },
+      {
+        "en": "Push back to starting position",
+        "ar": "ادفع للعودة إلى الوضعية الأولى"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Keep your torso upright",
+        "ar": "حافظ على استقامة الجذع"
+      }
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?w=600&h=400&fit=crop",
+    "videoUrl": "https://example.com/videos/lunges.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?w=300&h=200&fit=crop",
+    "calories": 9
+  },
+  {
+    "id": "ex_007",
+    "name": {
+      "en": "Plank",
+      "ar": "تمرين البلانك"
+    },
+    "targetMuscle": ["core", "shoulders"],
+    "equipment": ["bodyweight"],
+    "difficulty": "beginner",
+    "sets": 3,
+    "reps": {
+      "loseWeight": "30-60 seconds",
+      "gainMuscle": "45-90 seconds",
+      "gainWeight": "60-120 seconds"
+    },
+    "restSeconds": 60,
+    "instructions": [
+      {
+        "en": "Start in push-up position",
+        "ar": "ابدأ في وضعية تمرين الضغط"
+      },
+      {
+        "en": "Hold the position with straight body line",
+        "ar": "حافظ على الوضعية مع خط مستقيم للجسم"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Don't let your hips sag or pike up",
+        "ar": "لا تدع الوركين يهبطان أو يرتفعان"
+      }
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+    "videoUrl": "https://example.com/videos/plank.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop",
+    "calories": 5
+  },
+  {
+    "id": "ex_008",
+    "name": {
+      "en": "Burpees",
+      "ar": "تمرين البيربي"
+    },
+    "targetMuscle": ["full_body"],
+    "equipment": ["bodyweight"],
+    "difficulty": "intermediate",
+    "sets": 3,
+    "reps": {
+      "loseWeight": "8-12",
+      "gainMuscle": "6-10",
+      "gainWeight": "5-8"
+    },
+    "restSeconds": 90,
+    "instructions": [
+      {
+        "en": "Start standing, then squat down",
+        "ar": "ابدأ واقفاً، ثم انزل للقرفصاء"
+      },
+      {
+        "en": "Jump back into plank position",
+        "ar": "اقفز للخلف إلى وضعية البلانك"
+      },
+      {
+        "en": "Do a push-up, jump feet forward, then jump up",
+        "ar": "قم بتمرين ضغط، اقفز بالقدمين للأمام، ثم اقفز لأعلى"
+      }
+    ],
+    "tips": [
+      {
+        "en": "Maintain good form even when tired",
+        "ar": "حافظ على الشكل الصحيح حتى عند التعب"
+      }
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+    "videoUrl": "https://example.com/videos/burpees.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop",
+    "calories": 15
+  }
+]

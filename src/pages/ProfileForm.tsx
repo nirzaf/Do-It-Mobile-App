@@ -6,17 +6,21 @@ import { Select } from '../components/ui/Select';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import type { UserProfile } from '../types';
+import { registrationSchema } from '../lib/validators';
+import { ACTIVITY_LEVELS } from '../lib/constants';
+import type { UserRegistrationData, ActivityLevel, Gender } from '../types';
+import { z } from 'zod';
 
 interface FormData {
   firstName: string;
   lastName: string;
-  gender: 'male' | 'female' | '';
-  weight: string;
-  height: string;
-  age: string;
   email: string;
   phone: string;
+  gender: Gender | '';
+  birthDate: string;
+  weight: string;
+  height: string;
+  activityLevel: ActivityLevel | '';
 }
 
 interface FormErrors {
@@ -33,12 +37,13 @@ export function ProfileForm() {
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
-    gender: '',
-    weight: '',
-    height: '',
-    age: '',
     email: '',
     phone: '',
+    gender: '',
+    birthDate: '',
+    weight: '',
+    height: '',
+    activityLevel: '',
   });
   
   const [errors, setErrors] = useState<FormErrors>({});
@@ -58,39 +63,37 @@ export function ProfileForm() {
   };
 
   /**
-   * Validate form data
+   * Validate form data using Zod schema
    * @returns Object containing validation errors
    */
   const validateForm = (): FormErrors => {
-    const newErrors: FormErrors = {};
+    try {
+      const validationData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        gender: formData.gender as Gender,
+        birthDate: formData.birthDate,
+        weight: parseFloat(formData.weight) || 0,
+        height: parseFloat(formData.height) || 0,
+        activityLevel: formData.activityLevel as ActivityLevel,
+      };
 
-    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-    if (!formData.gender) newErrors.gender = 'Gender is required';
-    
-    const weight = parseFloat(formData.weight);
-    if (!formData.weight || isNaN(weight) || weight <= 0) {
-      newErrors.weight = 'Valid weight is required';
+      registrationSchema.parse(validationData);
+      return {};
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: FormErrors = {};
+        error.issues.forEach((err: any) => {
+          if (err.path.length > 0) {
+            newErrors[err.path[0] as string] = err.message;
+          }
+        });
+        return newErrors;
+      }
+      return { general: 'Validation failed' };
     }
-    
-    const height = parseFloat(formData.height);
-    if (!formData.height || isNaN(height) || height <= 0) {
-      newErrors.height = 'Valid height is required';
-    }
-    
-    const age = parseInt(formData.age);
-    if (!formData.age || isNaN(age) || age < 13 || age > 100) {
-      newErrors.age = 'Valid age (13-100) is required';
-    }
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email || !emailRegex.test(formData.email)) {
-      newErrors.email = 'Valid email is required';
-    }
-    
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-
-    return newErrors;
   };
 
   /**
@@ -108,15 +111,16 @@ export function ProfileForm() {
     }
 
     // Save form data to session storage for next step
-    const profileData: Partial<UserProfile> = {
+    const profileData: Partial<UserRegistrationData> = {
       firstName: formData.firstName,
       lastName: formData.lastName,
-      gender: formData.gender as 'male' | 'female',
-      weight: parseFloat(formData.weight),
-      height: parseFloat(formData.height),
-      age: parseInt(formData.age),
       email: formData.email,
       phone: formData.phone,
+      gender: formData.gender as Gender,
+      birthDate: formData.birthDate,
+      weight: parseFloat(formData.weight),
+      height: parseFloat(formData.height),
+      activityLevel: formData.activityLevel as ActivityLevel,
     };
     
     sessionStorage.setItem('profileData', JSON.stringify(profileData));
@@ -129,7 +133,13 @@ export function ProfileForm() {
   const genderOptions = [
     { value: 'male', label: t('male') },
     { value: 'female', label: t('female') },
+    { value: 'other', label: t('other') },
   ];
+
+  const activityLevelOptions = Object.entries(ACTIVITY_LEVELS).map(([key, value]) => ({
+    value: key,
+    label: t(value.nameKey),
+  }));
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
@@ -196,16 +206,14 @@ export function ProfileForm() {
               />
               
               <Input
-                label={t('age')}
-                type="number"
-                value={formData.age}
-                onChange={(e) => handleInputChange('age', e.target.value)}
-                error={errors.age}
-                min="13"
-                max="100"
+                label={t('birthDate')}
+                type="date"
+                value={formData.birthDate}
+                onChange={(e) => handleInputChange('birthDate', e.target.value)}
+                error={errors.birthDate}
                 required
               />
-              
+
               <Input
                 label={t('email')}
                 type="email"
@@ -214,7 +222,7 @@ export function ProfileForm() {
                 error={errors.email}
                 required
               />
-              
+
               <Input
                 label={t('phone')}
                 type="tel"
@@ -223,7 +231,17 @@ export function ProfileForm() {
                 error={errors.phone}
                 required
               />
-              
+
+              <Select
+                label={t('activityLevel')}
+                value={formData.activityLevel}
+                onChange={(e) => handleInputChange('activityLevel', e.target.value)}
+                options={activityLevelOptions}
+                placeholder={`Select ${t('activityLevel').toLowerCase()}`}
+                error={errors.activityLevel}
+                required
+              />
+
               <div className="flex space-x-4 pt-4">
                 <Button
                   type="button"

@@ -5,7 +5,7 @@ import { Card, CardContent } from '../components/ui/Card';
 import { Input } from '../components/ui/Input';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../hooks/useUser';
 import type { Exercise } from '../types';
 import exercisesData from '../data/exercises.json';
 import { 
@@ -22,7 +22,7 @@ import {
  */
 export function Exercises() {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useUser();
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [filteredExercises, setFilteredExercises] = useState<Exercise[]>([]);
@@ -36,7 +36,7 @@ export function Exercises() {
     }
 
     // Load exercises data
-    const exercisesList = exercisesData as Exercise[];
+    const exercisesList = exercisesData as any[];
     setExercises(exercisesList);
     setFilteredExercises(exercisesList);
   }, [user, navigate]);
@@ -46,16 +46,27 @@ export function Exercises() {
     let filtered = exercises;
 
     if (searchTerm) {
-      filtered = filtered.filter(exercise =>
-        exercise.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        exercise.targetMuscle.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      filtered = filtered.filter(exercise => {
+        const name = typeof exercise.name === 'string'
+          ? exercise.name
+          : exercise.name[language] || exercise.name.en;
+        const muscles = Array.isArray(exercise.targetMuscle)
+          ? exercise.targetMuscle.join(' ')
+          : exercise.targetMuscle;
+        return name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               muscles.toLowerCase().includes(searchTerm.toLowerCase());
+      });
     }
 
     if (selectedMuscle !== 'all') {
-      filtered = filtered.filter(exercise =>
-        exercise.targetMuscle.toLowerCase() === selectedMuscle.toLowerCase()
-      );
+      filtered = filtered.filter(exercise => {
+        const muscles = Array.isArray(exercise.targetMuscle)
+          ? exercise.targetMuscle
+          : [exercise.targetMuscle];
+        return muscles.some(muscle =>
+          muscle.toLowerCase() === selectedMuscle.toLowerCase()
+        );
+      });
     }
 
     setFilteredExercises(filtered);
@@ -66,14 +77,16 @@ export function Exercises() {
   }
 
   // Get unique muscle groups
-  const muscleGroups = ['all', ...Array.from(new Set(exercises.map(ex => ex.targetMuscle)))];
+  const muscleGroups = ['all', ...Array.from(new Set(
+    exercises.flatMap(ex => Array.isArray(ex.targetMuscle) ? ex.targetMuscle : [ex.targetMuscle])
+  ))];
 
   /**
    * Get exercise reps based on user goal
    */
   const getExerciseReps = (exercise: Exercise, goal: string) => {
     const goalKey = goal.toLowerCase().replace(' ', '') as keyof Exercise['reps'];
-    return exercise.reps[goalKey] || exercise.reps['Lose Weight'];
+    return exercise.reps?.[goalKey] || exercise.reps?.['loseWeight'] || '8-12';
   };
 
   /**
@@ -180,15 +193,21 @@ export function Exercises() {
                       {/* Exercise Info */}
                       <div className="flex-1 min-w-0">
                         <h3 className="font-medium text-slate-900 dark:text-slate-100 mb-1">
-                          {exercise.name}
+                          {typeof exercise.name === 'string'
+                            ? exercise.name
+                            : exercise.name[language] || exercise.name.en}
                         </h3>
                         
                         {/* Muscle Group Badge */}
                         <div className="mb-2">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            getMuscleGroupColor(exercise.targetMuscle)
+                            getMuscleGroupColor(Array.isArray(exercise.targetMuscle)
+                              ? exercise.targetMuscle[0]
+                              : exercise.targetMuscle)
                           }`}>
-                            {exercise.targetMuscle}
+                            {Array.isArray(exercise.targetMuscle)
+                              ? exercise.targetMuscle.join(', ')
+                              : exercise.targetMuscle}
                           </span>
                         </div>
                         

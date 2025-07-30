@@ -1,6 +1,13 @@
-// TypeScript interfaces for the Do IT fitness app
+/**
+ * Main types file - Re-exports from organized type modules
+ * This maintains backward compatibility while using the new organized structure
+ */
 
-export interface UserProfile {
+// Re-export all types from the new organized structure
+export * from './types/index';
+
+// Legacy interfaces for backward compatibility
+export interface LegacyUserProfile {
   firstName: string;
   lastName: string;
   name: string;
@@ -16,7 +23,7 @@ export interface UserProfile {
   progressVideos?: string[];
 }
 
-export interface Exercise {
+export interface LegacyExercise {
   id: string;
   name: string;
   targetMuscle: string;
@@ -31,7 +38,7 @@ export interface Exercise {
   videoUrl: string;
 }
 
-export interface Meal {
+export interface LegacyMeal {
   id: string;
   name: string;
   time: string;
@@ -40,13 +47,13 @@ export interface Meal {
   portions: string;
 }
 
-export interface DietPlan {
-  meals: Meal[];
+export interface LegacyDietPlan {
+  meals: LegacyMeal[];
   totalCalories: number;
   waterIntake: number;
 }
 
-export interface TrainingPlan {
+export interface LegacyTrainingPlan {
   days: {
     [key: string]: {
       name: string;
@@ -55,25 +62,17 @@ export interface TrainingPlan {
   };
 }
 
-export interface Plan {
-  diet: DietPlan;
-  training: TrainingPlan;
+export interface LegacyPlan {
+  diet: LegacyDietPlan;
+  training: LegacyTrainingPlan;
 }
 
 export interface Plans {
-  'Lose Weight': Plan;
-  'Gain Weight': Plan;
-  'Gain Muscle': Plan;
-  'Extra Diet': Plan;
+  'Lose Weight': LegacyPlan;
+  'Gain Weight': LegacyPlan;
+  'Gain Muscle': LegacyPlan;
+  'Extra Diet': LegacyPlan;
 }
 
-export interface Translations {
-  [key: string]: string | string[];
-}
-
-export interface SubscriptionPackage {
-  name: string;
-  price: number;
-  currency: string;
-  features: string[];
-}
+// Type aliases for backward compatibility
+export type { UserProfile as LegacyUserProfileAlias } from './types/index';

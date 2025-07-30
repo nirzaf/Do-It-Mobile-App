@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import type { UserProfile } from '../types';
 
 interface UserContextType {
@@ -8,7 +8,7 @@ interface UserContextType {
   isAuthenticated: boolean;
 }
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+export const UserContext = createContext<UserContextType | undefined>(undefined);
 
 /**
  * User provider component that manages user profile state
@@ -76,14 +76,3 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-/**
- * Custom hook to use user context
- * @returns User context value
- */
-export function useUser() {
-  const context = useContext(UserContext);
-  if (context === undefined) {
-    throw new Error('useUser must be used within a UserProvider');
-  }
-  return context;
-}

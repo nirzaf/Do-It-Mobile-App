@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../hooks/useUser';
 import type { Exercise } from '../types';
 import exercisesData from '../data/exercises.json';
 import { 
@@ -26,7 +26,7 @@ import {
 export function ExerciseDetail() {
   const navigate = useNavigate();
   const { exerciseId } = useParams<{ exerciseId: string }>();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useUser();
   const [exercise, setExercise] = useState<Exercise | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -49,7 +49,7 @@ export function ExerciseDetail() {
     }
 
     // Find exercise by ID
-    const exercises = exercisesData as Exercise[];
+    const exercises = exercisesData as any[];
     const foundExercise = exercises.find(ex => ex.id === exerciseId);
     
     if (!foundExercise) {
@@ -96,10 +96,11 @@ export function ExerciseDetail() {
    */
   const getExerciseReps = (exercise: Exercise, goal: string) => {
     const goalKey = goal as keyof Exercise['reps'];
-    return exercise.reps[goalKey] || exercise.reps['Lose Weight'];
+    return exercise.reps?.[goalKey] || exercise.reps?.['loseWeight'] || '8-12';
   };
 
-  const reps = getExerciseReps(exercise, user.goal);
+  const repsString = getExerciseReps(exercise, user.goal);
+  const reps = parseInt(repsString.split('-')[1] || repsString.split('-')[0] || '12');
 
   /**
    * Toggle video play/pause
@@ -165,7 +166,9 @@ export function ExerciseDetail() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <Header 
-        title={exercise.name}
+        title={typeof exercise.name === 'string'
+          ? exercise.name
+          : exercise.name[language] || exercise.name.en}
       />
       
       <div className="container mx-auto px-4 py-6 max-w-md">
@@ -176,7 +179,11 @@ export function ExerciseDetail() {
             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-700">
               <div className="text-center text-white">
                 <Dumbbell className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                <p className="text-lg font-medium">{exercise.name}</p>
+                <p className="text-lg font-medium">
+                  {typeof exercise.name === 'string'
+                    ? exercise.name
+                    : exercise.name[language] || exercise.name.en}
+                </p>
                 <p className="text-sm opacity-75">{t('exerciseVideo')}</p>
               </div>
             </div>
@@ -221,12 +228,18 @@ export function ExerciseDetail() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">
-                  {exercise.name}
+                  {typeof exercise.name === 'string'
+                    ? exercise.name
+                    : exercise.name[language] || exercise.name.en}
                 </h1>
                 <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium mt-2 ${
-                  getMuscleGroupColor(exercise.targetMuscle)
+                  getMuscleGroupColor(Array.isArray(exercise.targetMuscle)
+                    ? exercise.targetMuscle[0]
+                    : exercise.targetMuscle)
                 }`}>
-                  {exercise.targetMuscle}
+                  {Array.isArray(exercise.targetMuscle)
+                    ? exercise.targetMuscle.join(', ')
+                    : exercise.targetMuscle}
                 </span>
               </div>
             </div>
@@ -250,7 +263,7 @@ export function ExerciseDetail() {
                   <RotateCcw className="h-4 w-4" />
                 </div>
                 <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
-                  {reps}
+                  {repsString}
                 </p>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
                   {t('reps')}
@@ -361,33 +374,50 @@ export function ExerciseDetail() {
           
           <CardContent>
             <div className="space-y-3">
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400">1</span>
-                </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  {t('watchVideoCarefully')}
-                </p>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400">2</span>
-                </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  {t('performExerciseSlowly')}
-                </p>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400">3</span>
-                </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  {t('takeRestBetweenSets')}
-                </p>
-              </div>
-              
+              {/* Dynamic Exercise Instructions */}
+              {exercise.instructions && exercise.instructions.length > 0 ? (
+                exercise.instructions.map((instruction, index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400">{index + 1}</span>
+                    </div>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {typeof instruction === 'string' ? instruction : instruction.en}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400">1</span>
+                    </div>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('watchVideoCarefully')}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400">2</span>
+                    </div>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('performExerciseSlowly')}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400">3</span>
+                    </div>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('takeRestBetweenSets')}
+                    </p>
+                  </div>
+                </>
+              )}
+
+              {/* Safety Warning */}
               <div className="flex items-start space-x-3">
                 <div className="w-6 h-6 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <AlertCircle className="h-3 w-3 text-yellow-600 dark:text-yellow-400" />
@@ -397,6 +427,25 @@ export function ExerciseDetail() {
                 </p>
               </div>
             </div>
+
+            {/* Exercise Tips */}
+            {exercise.tips && exercise.tips.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+                <h3 className="font-medium text-slate-900 dark:text-slate-100 mb-3">
+                  {t('tips')}
+                </h3>
+                <div className="space-y-2">
+                  {exercise.tips.map((tip, index) => (
+                    <div key={index} className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {typeof tip === 'string' ? tip : tip.en}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

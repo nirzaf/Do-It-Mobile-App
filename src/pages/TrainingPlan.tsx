@@ -4,10 +4,9 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../hooks/useUser';
 import { generatePlan } from '../lib/utils';
-import type { Plan, Exercise } from '../types';
-import exercisesData from '../data/exercises.json';
+import type { Plan } from '../types';
 import { 
 
   Clock,
@@ -25,21 +24,18 @@ import {
  */
 export function TrainingPlan() {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useUser();
   const [userPlan, setUserPlan] = useState<Plan | null>(null);
   const [selectedDay, setSelectedDay] = useState<number>(0);
   const [expandedExercise, setExpandedExercise] = useState<number | null>(null);
-  const [exercises, setExercises] = useState<Exercise[]>([]);
+
 
   useEffect(() => {
     if (!user) {
       navigate('/welcome');
       return;
     }
-
-    // Load exercises data
-    setExercises(exercisesData as Exercise[]);
 
     // Generate user plan
     const plan = generatePlan(user);
@@ -63,22 +59,23 @@ export function TrainingPlan() {
   /**
    * Get exercise details by ID
    */
-  const getExerciseById = (id: string): Exercise | undefined => {
-    return exercises.find(ex => ex.id === id);
-  };
+
 
   /**
    * Get exercise reps based on user goal
    */
-  const getExerciseReps = (exercise: Exercise, goal: string) => {
-    const goalKey = goal as keyof Exercise['reps'];
-    return exercise.reps[goalKey] || exercise.reps['Lose Weight'];
+  const getExerciseReps = (exercise: any, _goal: string) => {
+    // Handle legacy data structure
+    if (exercise.reps && typeof exercise.reps === 'object') {
+      return exercise.reps['Lose Weight'] || exercise.reps[Object.keys(exercise.reps)[0]] || 10;
+    }
+    return 10; // Default reps
   };
 
   /**
    * Get exercise details including sets, reps, and rest time
    */
-  const getExerciseDetails = (exercise: Exercise) => {
+  const getExerciseDetails = (exercise: any) => {
     const reps = getExerciseReps(exercise, user.goal);
     return {
       sets: exercise.sets,
@@ -188,8 +185,8 @@ export function TrainingPlan() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                    {selectedDayExercises.reduce((total: number, exerciseId: string) => {
-                      const exercise = getExerciseById(exerciseId);
+                    {selectedDayExercises.reduce((total: number, exerciseData: any) => {
+                      const exercise = exerciseData.exercise;
                       if (!exercise) return total;
                       const details = getExerciseDetails(exercise);
                       return total + (details.sets * details.reps);
@@ -221,15 +218,15 @@ export function TrainingPlan() {
               </CardContent>
             </Card>
           ) : (
-            selectedDayExercises.map((exerciseId: string, exerciseIndex: number) => {
-              const exercise = getExerciseById(exerciseId);
+            selectedDayExercises.map((exerciseData: any, exerciseIndex: number) => {
+              const exercise = exerciseData.exercise;
               if (!exercise) return null;
               
               const details = getExerciseDetails(exercise);
               const isExpanded = expandedExercise === exerciseIndex;
 
               return (
-                <Card key={exerciseId} className="overflow-hidden">
+                <Card key={exercise.id} className="overflow-hidden">
                   <CardHeader 
                     className="cursor-pointer"
                     onClick={() => toggleExerciseExpansion(exerciseIndex)}
@@ -241,13 +238,19 @@ export function TrainingPlan() {
                         </div>
                         <div>
                           <h3 className="font-medium text-slate-900 dark:text-slate-100">
-                            {exercise.name}
+                            {typeof exercise.name === 'string'
+                              ? exercise.name
+                              : exercise.name[language] || exercise.name.en}
                           </h3>
                           <div className="flex items-center space-x-2">
                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                              getMuscleGroupColor(exercise.targetMuscle)
+                              getMuscleGroupColor(Array.isArray(exercise.targetMuscle)
+                                ? exercise.targetMuscle[0]
+                                : exercise.targetMuscle)
                             }`}>
-                              {exercise.targetMuscle}
+                              {Array.isArray(exercise.targetMuscle)
+                                ? exercise.targetMuscle.join(', ')
+                                : exercise.targetMuscle}
                             </span>
                             <div className="flex items-center space-x-1 text-sm text-slate-600 dark:text-slate-400">
                               <Target className="h-3 w-3" />

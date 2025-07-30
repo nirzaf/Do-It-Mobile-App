@@ -4,13 +4,12 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
+import type { UserGoal } from '../types';
 
 import { Target, TrendingDown, TrendingUp, Dumbbell, Utensils } from 'lucide-react';
 
-type Goal = 'Lose Weight' | 'Gain Weight' | 'Gain Muscle' | 'Extra Diet';
-
 interface GoalOption {
-  id: Goal;
+  id: UserGoal;
   title: string;
   description: string;
   icon: React.ReactNode;
@@ -23,7 +22,7 @@ interface GoalOption {
 export function GoalSelection() {
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const [selectedGoal, setSelectedGoal] = useState<Goal | null>(null);
+  const [selectedGoal, setSelectedGoal] = useState<UserGoal | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   /**
@@ -31,28 +30,28 @@ export function GoalSelection() {
    */
   const goalOptions: GoalOption[] = [
     {
-      id: 'Lose Weight',
+      id: 'lose_weight',
       title: t('loseWeight'),
       description: 'Burn calories and reduce body fat',
       icon: <TrendingDown className="h-8 w-8" />,
       color: 'bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400',
     },
     {
-      id: 'Gain Weight',
+      id: 'gain_weight',
       title: t('gainWeight'),
       description: 'Increase overall body mass',
       icon: <TrendingUp className="h-8 w-8" />,
       color: 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400',
     },
     {
-      id: 'Gain Muscle',
+      id: 'gain_muscle',
       title: t('gainMuscle'),
       description: 'Build lean muscle mass',
       icon: <Dumbbell className="h-8 w-8" />,
       color: 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400',
     },
     {
-      id: 'Extra Diet',
+      id: 'extra_diet',
       title: t('extraDiet'),
       description: 'Focus on specialized nutrition',
       icon: <Utensils className="h-8 w-8" />,
@@ -64,7 +63,7 @@ export function GoalSelection() {
    * Handle goal selection
    * @param goal - Selected fitness goal
    */
-  const handleGoalSelect = (goal: Goal) => {
+  const handleGoalSelect = (goal: UserGoal) => {
     setSelectedGoal(goal);
   };
 

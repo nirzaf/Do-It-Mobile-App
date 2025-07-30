@@ -10,7 +10,7 @@ import { Dumbbell, Heart, Target } from 'lucide-react';
  */
 export function Welcome() {
   const navigate = useNavigate();
-  const { t, isRTL } = useLanguage();
+  const { t } = useLanguage();
 
   /**
    * Navigate to the profile registration screen

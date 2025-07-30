@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../hooks/useUser';
 import { generatePlan } from '../lib/utils';
 import type { Plan, Meal } from '../types';
 import { 
@@ -92,7 +92,7 @@ export function DietPlan() {
    * Calculate total calories for a meal
    */
   const calculateMealCalories = (meal: Meal) => {
-    return meal.calories;
+    return meal.totalCalories || 0;
   };
 
   /**
