@@ -1,4 +1,4 @@
-import { UserProfile, Plans, Plan } from '../types';
+import type { UserProfile, Plans, Plan } from '../types';
 import plansData from '../data/plans.json';
 
 /**

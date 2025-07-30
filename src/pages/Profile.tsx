@@ -8,7 +8,7 @@ import { Modal } from '../components/ui/Modal';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
-import { UserProfile } from '../types';
+import type { UserProfile } from '../types';
 import { calculateBMI, calculateDailyCalories, calculateWaterIntake } from '../lib/utils';
 import { 
   User,
@@ -144,9 +144,7 @@ export function Profile() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <Header 
-        title={t('profile')} 
-        showBack 
-        onBack={() => navigate('/dashboard')}
+        title={t('profile')}
       />
       
       <div className="container mx-auto px-4 py-6 max-w-md">
@@ -296,7 +294,7 @@ export function Profile() {
                   <Select
                     label={t('gender')}
                     value={editForm.gender}
-                    onChange={(value) => handleInputChange('gender', value)}
+                    onChange={(e) => handleInputChange('gender', e.target.value)}
                     options={[
                       { value: 'male', label: t('male') },
                       { value: 'female', label: t('female') }
@@ -329,7 +327,7 @@ export function Profile() {
                 <Select
                   label={t('activityLevel')}
                   value={editForm.activityLevel}
-                  onChange={(value) => handleInputChange('activityLevel', value)}
+                  onChange={(e) => handleInputChange('activityLevel', e.target.value)}
                   options={[
                     { value: 'sedentary', label: t('sedentary') },
                     { value: 'light', label: t('lightlyActive') },
@@ -343,7 +341,7 @@ export function Profile() {
                 <Select
                   label={t('goal')}
                   value={editForm.goal}
-                  onChange={(value) => handleInputChange('goal', value)}
+                  onChange={(e) => handleInputChange('goal', e.target.value)}
                   options={[
                     { value: 'Lose Weight', label: t('loseweight') },
                     { value: 'Gain Weight', label: t('gainweight') },

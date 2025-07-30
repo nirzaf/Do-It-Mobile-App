@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
-import { UserProfile } from '../types';
+import type { UserProfile } from '../types';
 import { Camera, Video, Upload, Check } from 'lucide-react';
 
 /**

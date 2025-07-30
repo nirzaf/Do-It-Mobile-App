@@ -6,9 +6,8 @@ import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
 import { generatePlan } from '../lib/utils';
-import { Plan, Meal } from '../types';
+import type { Plan, Meal } from '../types';
 import { 
-  ArrowLeft,
   Clock,
   Utensils,
   Zap,
@@ -35,7 +34,7 @@ export function DietPlan() {
     }
 
     // Generate user plan
-    const plan = generatePlan(user.goal);
+    const plan = generatePlan(user);
     setUserPlan(plan);
   }, [user, navigate]);
 
@@ -106,19 +105,17 @@ export function DietPlan() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <Header 
-        title={t('dietPlan')} 
-        showBack 
-        onBack={() => navigate('/dashboard')}
+        title={t('dietPlan')}
       />
       
       <div className="container mx-auto px-4 py-6 max-w-md">
         {/* Plan Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-            {userPlan.dietPlan.name}
+            {userPlan.diet.name}
           </h1>
           <p className="text-slate-600 dark:text-slate-400">
-            {userPlan.dietPlan.description}
+            {userPlan.diet.description}
           </p>
         </div>
 
@@ -149,7 +146,7 @@ export function DietPlan() {
           </h2>
           
           {mealTimes.map((mealTime, mealIndex) => {
-            const meal = userPlan.dietPlan.meals.find(m => m.time === mealTime);
+            const meal = userPlan.diet.meals.find((m: any) => m.time === mealTime);
             if (!meal) return null;
 
             const totalCalories = calculateMealCalories(meal);
@@ -193,7 +190,7 @@ export function DietPlan() {
                 {isExpanded && (
                   <CardContent className="pt-0">
                     <div className="space-y-3">
-                      {meal.foods.map((food, foodIndex) => (
+                      {meal.foods.map((food: any, foodIndex: number) => (
                         <div 
                           key={foodIndex}
                           className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-lg"
@@ -237,7 +234,7 @@ export function DietPlan() {
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
                 <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  {userPlan.dietPlan.meals.reduce((total, meal) => total + calculateMealCalories(meal), 0)}
+                  {userPlan.diet.meals.reduce((total: number, meal: any) => total + calculateMealCalories(meal), 0)}
                 </p>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
                   {t('totalCalories')}
@@ -245,7 +242,7 @@ export function DietPlan() {
               </div>
               <div className="text-center">
                 <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-                  {userPlan.dietPlan.meals.length}
+                  {userPlan.diet.meals.length}
                 </p>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
                   {t('meals')}

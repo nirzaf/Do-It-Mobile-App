@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent, CardHeader } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 import { Input } from '../components/ui/Input';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
-import { Exercise } from '../types';
+import type { Exercise } from '../types';
 import exercisesData from '../data/exercises.json';
 import { 
   Search,
@@ -14,8 +14,7 @@ import {
   Play,
   Dumbbell,
   Target,
-  Clock,
-  RotateCcw
+  Clock
 } from 'lucide-react';
 
 /**
@@ -96,9 +95,7 @@ export function Exercises() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <Header 
-        title={t('exerciseVideos')} 
-        showBack 
-        onBack={() => navigate('/dashboard')}
+        title={t('exerciseVideos')}
       />
       
       <div className="container mx-auto px-4 py-6 max-w-md">

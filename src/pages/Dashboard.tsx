@@ -6,7 +6,7 @@ import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
 import { calculateBMI, calculateDailyCalories, calculateWaterIntake, generatePlan } from '../lib/utils';
-import { Plan } from '../types';
+import type { Plan } from '../types';
 import { 
   User, 
   Target, 

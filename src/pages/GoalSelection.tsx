@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { UserProfile } from '../types';
+import type { UserProfile } from '../types';
 import { Target, TrendingDown, TrendingUp, Dumbbell, Utensils } from 'lucide-react';
 
 type Goal = 'Lose Weight' | 'Gain Weight' | 'Gain Muscle' | 'Extra Diet';

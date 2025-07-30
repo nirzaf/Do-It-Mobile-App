@@ -6,7 +6,7 @@ import { Select } from '../components/ui/Select';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { UserProfile } from '../types';
+import type { UserProfile } from '../types';
 
 interface FormData {
   firstName: string;
@@ -61,7 +61,7 @@ export function ProfileForm() {
    * Validate form data
    * @returns Object containing validation errors
    */
-  const validateForm = (): FormErrors {
+  const validateForm = (): FormErrors => {
     const newErrors: FormErrors = {};
 
     if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';

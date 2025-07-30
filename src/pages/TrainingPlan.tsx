@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
@@ -6,10 +6,10 @@ import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
 import { generatePlan } from '../lib/utils';
-import { Plan, Exercise } from '../types';
+import type { Plan, Exercise } from '../types';
 import exercisesData from '../data/exercises.json';
 import { 
-  ArrowLeft,
+
   Clock,
   Dumbbell,
   Target,
@@ -42,7 +42,7 @@ export function TrainingPlan() {
     setExercises(exercisesData as Exercise[]);
 
     // Generate user plan
-    const plan = generatePlan(user.goal);
+    const plan = generatePlan(user);
     setUserPlan(plan);
   }, [user, navigate]);
 
@@ -58,7 +58,7 @@ export function TrainingPlan() {
   }
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const selectedDayExercises = userPlan.trainingPlan.dailyExercises[selectedDay] || [];
+  const selectedDayExercises = userPlan.training.days[`Day ${selectedDay + 1}`]?.exercises || [];
 
   /**
    * Get exercise details by ID
@@ -71,8 +71,20 @@ export function TrainingPlan() {
    * Get exercise reps based on user goal
    */
   const getExerciseReps = (exercise: Exercise, goal: string) => {
-    const goalKey = goal.toLowerCase().replace(' ', '') as keyof Exercise['reps'];
-    return exercise.reps[goalKey] || exercise.reps.loseWeight;
+    const goalKey = goal as keyof Exercise['reps'];
+    return exercise.reps[goalKey] || exercise.reps['Lose Weight'];
+  };
+
+  /**
+   * Get exercise details including sets, reps, and rest time
+   */
+  const getExerciseDetails = (exercise: Exercise) => {
+    const reps = getExerciseReps(exercise, user.goal);
+    return {
+      sets: exercise.sets,
+      reps: reps,
+      rest: 60
+    };
   };
 
   /**
@@ -108,19 +120,17 @@ export function TrainingPlan() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <Header 
-        title={t('trainingPlan')} 
-        showBack 
-        onBack={() => navigate('/dashboard')}
-      />
+          title={t('trainingPlan')} 
+        />
       
       <div className="container mx-auto px-4 py-6 max-w-md">
         {/* Plan Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-            {userPlan.trainingPlan.name}
+            Training Plan
           </h1>
           <p className="text-slate-600 dark:text-slate-400">
-            {userPlan.trainingPlan.description}
+            Complete your daily workout routine
           </p>
         </div>
 
@@ -131,7 +141,7 @@ export function TrainingPlan() {
           </h2>
           <div className="flex space-x-2 overflow-x-auto pb-2">
             {days.map((day, index) => {
-              const dayExercises = userPlan.trainingPlan.dailyExercises[index] || [];
+              const dayExercises = userPlan.training.days[`Day ${index + 1}`]?.exercises || [];
               const isRestDay = dayExercises.length === 0;
               
               return (
@@ -178,11 +188,11 @@ export function TrainingPlan() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                    {selectedDayExercises.reduce((total, exerciseId) => {
+                    {selectedDayExercises.reduce((total: number, exerciseId: string) => {
                       const exercise = getExerciseById(exerciseId);
                       if (!exercise) return total;
-                      const reps = getExerciseReps(exercise, user.goal);
-                      return total + (reps.sets * reps.reps);
+                      const details = getExerciseDetails(exercise);
+                      return total + (details.sets * details.reps);
                     }, 0)}
                   </p>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -211,11 +221,11 @@ export function TrainingPlan() {
               </CardContent>
             </Card>
           ) : (
-            selectedDayExercises.map((exerciseId, exerciseIndex) => {
+            selectedDayExercises.map((exerciseId: string, exerciseIndex: number) => {
               const exercise = getExerciseById(exerciseId);
               if (!exercise) return null;
-
-              const reps = getExerciseReps(exercise, user.goal);
+              
+              const details = getExerciseDetails(exercise);
               const isExpanded = expandedExercise === exerciseIndex;
 
               return (
@@ -241,7 +251,7 @@ export function TrainingPlan() {
                             </span>
                             <div className="flex items-center space-x-1 text-sm text-slate-600 dark:text-slate-400">
                               <Target className="h-3 w-3" />
-                              <span>{reps.sets}x{reps.reps}</span>
+                              <span>{details.sets}x{details.reps}</span>
                             </div>
                           </div>
                         </div>
@@ -264,7 +274,7 @@ export function TrainingPlan() {
                               <Target className="h-4 w-4" />
                             </div>
                             <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                              {reps.sets}
+                              {details.sets}
                             </p>
                             <p className="text-xs text-slate-600 dark:text-slate-400">
                               {t('sets')}
@@ -275,7 +285,7 @@ export function TrainingPlan() {
                               <RotateCcw className="h-4 w-4" />
                             </div>
                             <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                              {reps.reps}
+                              {details.reps}
                             </p>
                             <p className="text-xs text-slate-600 dark:text-slate-400">
                               {t('reps')}
@@ -286,7 +296,7 @@ export function TrainingPlan() {
                               <Clock className="h-4 w-4" />
                             </div>
                             <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                              {reps.rest}s
+                              {details.rest}s
                             </p>
                             <p className="text-xs text-slate-600 dark:text-slate-400">
                               {t('rest')}

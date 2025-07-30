@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Translations } from '../types';
+import type { Translations } from '../types';
 import enTranslations from '../data/locales/en.json';
 import arTranslations from '../data/locales/ar.json';
 import { interpolate } from '../lib/utils';

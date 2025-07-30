@@ -3,6 +3,7 @@
 export interface UserProfile {
   firstName: string;
   lastName: string;
+  name: string;
   gender: 'male' | 'female';
   weight: number; // in kg
   height: number; // in cm
@@ -10,6 +11,7 @@ export interface UserProfile {
   email: string;
   phone: string;
   goal: 'Lose Weight' | 'Gain Weight' | 'Gain Muscle' | 'Extra Diet';
+  activityLevel: 'sedentary' | 'lightly_active' | 'moderately_active' | 'very_active' | 'extra_active';
   profilePhoto?: string;
   progressVideos?: string[];
 }
@@ -66,7 +68,7 @@ export interface Plans {
 }
 
 export interface Translations {
-  [key: string]: string;
+  [key: string]: string | string[];
 }
 
 export interface SubscriptionPackage {

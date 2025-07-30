@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
-import { Exercise } from '../types';
+import type { Exercise } from '../types';
 import exercisesData from '../data/exercises.json';
 import { 
   Play,
@@ -61,7 +61,7 @@ export function ExerciseDetail() {
   }, [user, exerciseId, navigate]);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: number;
     
     if (isResting && restTimer > 0) {
       interval = setInterval(() => {
@@ -95,8 +95,8 @@ export function ExerciseDetail() {
    * Get exercise reps based on user goal
    */
   const getExerciseReps = (exercise: Exercise, goal: string) => {
-    const goalKey = goal.toLowerCase().replace(' ', '') as keyof Exercise['reps'];
-    return exercise.reps[goalKey] || exercise.reps.loseWeight;
+    const goalKey = goal as keyof Exercise['reps'];
+    return exercise.reps[goalKey] || exercise.reps['Lose Weight'];
   };
 
   const reps = getExerciseReps(exercise, user.goal);
@@ -165,9 +165,7 @@ export function ExerciseDetail() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <Header 
-        title={exercise.name} 
-        showBack 
-        onBack={() => navigate('/exercises')}
+        title={exercise.name}
       />
       
       <div className="container mx-auto px-4 py-6 max-w-md">
