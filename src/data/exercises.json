@@ -1,0 +1,170 @@
+[
+  {
+    "id": "1",
+    "name": "Push-ups",
+    "targetMuscle": "Chest",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 15,
+      "Gain Muscle": 12,
+      "Gain Weight": 10,
+      "Extra Diet": 20
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Push-ups",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Push-ups+Video"
+  },
+  {
+    "id": "2",
+    "name": "Squats",
+    "targetMuscle": "Legs",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 20,
+      "Gain Muscle": 15,
+      "Gain Weight": 12,
+      "Extra Diet": 25
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Squats",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Squats+Video"
+  },
+  {
+    "id": "3",
+    "name": "Pull-ups",
+    "targetMuscle": "Back",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 8,
+      "Gain Muscle": 6,
+      "Gain Weight": 5,
+      "Extra Diet": 10
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Pull-ups",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Pull-ups+Video"
+  },
+  {
+    "id": "4",
+    "name": "Bicep Curls",
+    "targetMuscle": "Biceps",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 15,
+      "Gain Muscle": 12,
+      "Gain Weight": 10,
+      "Extra Diet": 18
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Bicep+Curls",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Bicep+Curls+Video"
+  },
+  {
+    "id": "5",
+    "name": "Shoulder Press",
+    "targetMuscle": "Shoulders",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 12,
+      "Gain Muscle": 10,
+      "Gain Weight": 8,
+      "Extra Diet": 15
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Shoulder+Press",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Shoulder+Press+Video"
+  },
+  {
+    "id": "6",
+    "name": "Deadlifts",
+    "targetMuscle": "Back",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 10,
+      "Gain Muscle": 8,
+      "Gain Weight": 6,
+      "Extra Diet": 12
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Deadlifts",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Deadlifts+Video"
+  },
+  {
+    "id": "7",
+    "name": "Bench Press",
+    "targetMuscle": "Chest",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 12,
+      "Gain Muscle": 10,
+      "Gain Weight": 8,
+      "Extra Diet": 15
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Bench+Press",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Bench+Press+Video"
+  },
+  {
+    "id": "8",
+    "name": "Lunges",
+    "targetMuscle": "Legs",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 16,
+      "Gain Muscle": 12,
+      "Gain Weight": 10,
+      "Extra Diet": 20
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Lunges",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Lunges+Video"
+  },
+  {
+    "id": "9",
+    "name": "Tricep Dips",
+    "targetMuscle": "Triceps",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 12,
+      "Gain Muscle": 10,
+      "Gain Weight": 8,
+      "Extra Diet": 15
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Tricep+Dips",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Tricep+Dips+Video"
+  },
+  {
+    "id": "10",
+    "name": "Plank",
+    "targetMuscle": "Core",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 60,
+      "Gain Muscle": 45,
+      "Gain Weight": 30,
+      "Extra Diet": 90
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Plank",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Plank+Video"
+  },
+  {
+    "id": "11",
+    "name": "Mountain Climbers",
+    "targetMuscle": "Core",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 30,
+      "Gain Muscle": 20,
+      "Gain Weight": 15,
+      "Extra Diet": 40
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Mountain+Climbers",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Mountain+Climbers+Video"
+  },
+  {
+    "id": "12",
+    "name": "Burpees",
+    "targetMuscle": "Full Body",
+    "sets": 3,
+    "reps": {
+      "Lose Weight": 15,
+      "Gain Muscle": 10,
+      "Gain Weight": 8,
+      "Extra Diet": 20
+    },
+    "photoUrl": "https://placehold.co/600x400/3b82f6/ffffff?text=Burpees",
+    "videoUrl": "https://placehold.co/800x450/3b82f6/ffffff?text=Burpees+Video"
+  }
+]
