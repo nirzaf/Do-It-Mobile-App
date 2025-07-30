@@ -154,5 +154,6 @@
   "liveClasses": "Live Fitness Classes",
   "prioritySupport": "Priority Support",
   "subscriptionConfirmation": "You have subscribed to the {packageName} package!",
-  "backToDashboard": "Back to Dashboard"
+  "backToDashboard": "Back to Dashboard",
+  "upgradeAccount": "Upgrade your account"
 }

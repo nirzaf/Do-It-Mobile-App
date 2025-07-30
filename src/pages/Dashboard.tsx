@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../components/ui/Button';
-import { Card, CardContent, CardHeader } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../context/UserContext';
@@ -11,12 +10,12 @@ import {
   User, 
   Target, 
   Droplets, 
-  Calendar, 
   TrendingUp, 
   Play,
   Utensils,
   Dumbbell,
-  ChevronRight
+  ChevronRight,
+  Crown
 } from 'lucide-react';
 
 /**
@@ -26,7 +25,6 @@ export function Dashboard() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const { user } = useUser();
-  const [userPlan, setUserPlan] = useState<Plan | null>(null);
   const [bmi, setBmi] = useState<number>(0);
   const [dailyCalories, setDailyCalories] = useState<number>(0);
   const [waterIntake, setWaterIntake] = useState<number>(0);
@@ -38,17 +36,16 @@ export function Dashboard() {
     }
 
     // Calculate user metrics
-    const userBmi = calculateBMI(user.weight, user.height);
-    const userCalories = calculateDailyCalories(user.weight, user.height, user.age, user.gender, user.activityLevel);
-    const userWater = calculateWaterIntake(user.weight, user.activityLevel);
+    const userBMI = calculateBMI(user.weight, user.height);
+    const calories = calculateDailyCalories(user);
+    const water = calculateWaterIntake(user.weight);
     
-    setBmi(userBmi);
-    setDailyCalories(userCalories);
-    setWaterIntake(userWater);
+    setBmi(userBMI);
+    setDailyCalories(calories);
+    setWaterIntake(water);
 
     // Generate user plan
-    const plan = generatePlan(user.goal);
-    setUserPlan(plan);
+    generatePlan(user);
   }, [user, navigate]);
 
   if (!user) {
@@ -235,6 +232,31 @@ export function Dashboard() {
                     </h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
                       {t('watchExercises')}
+                    </p>
+                  </div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-slate-400" />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Subscription */}
+          <Card 
+            className="cursor-pointer hover:shadow-md transition-shadow border-yellow-200 dark:border-yellow-800 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20"
+            onClick={() => navigate('/subscription')}
+          >
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center">
+                    <Crown className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-slate-900 dark:text-slate-100">
+                      {t('subscription')}
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('upgradeAccount')}
                     </p>
                   </div>
                 </div>
