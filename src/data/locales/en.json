@@ -1,7 +1,12 @@
 {
   "appName": "Do IT",
+  "appSlogan": "Your Personal Fitness & Health Companion",
   "welcome": "Welcome",
+  "welcomeMessage": "Embark on a transformative journey with Do IT - your trusted companion for achieving your health and fitness goals",
   "getStarted": "Get Started",
+  "personalizedExperience": "Completely personalized experience for you",
+  "expertGuidance": "Guidance from fitness and nutrition experts",
+  "transformYourLife": "Transform your life and achieve your goals",
   "language": "Language",
   "english": "English",
   "arabic": "العربية",

@@ -2,30 +2,12 @@
 
 ```yaml
 - banner:
-  - heading "Profile" [level=1]
   - button "عربي"
   - button "Switch to dark mode"
-- heading "Profile" [level=2]
-- paragraph: Tell us about yourself
-- text: First Name
-- textbox "First Name"
-- text: Last Name
-- textbox "Last Name"
-- text: Gender
-- combobox "Gender":
-  - option "Select gender" [disabled] [selected]
-  - option "Male"
-  - option "Female"
-- text: Weight (kg)
-- spinbutton "Weight (kg)"
-- text: Height (cm)
-- spinbutton "Height (cm)"
-- text: Age
-- spinbutton "Age"
-- text: Email
-- textbox "Email"
-- text: Phone Number
-- textbox "Phone Number"
-- button "Back"
-- button "Next"
+- heading "Do IT" [level=1]
+- paragraph: Your Personal Fitness & Health Companion
+- paragraph: Embark on a transformative journey with Do IT - your trusted companion for achieving your health and fitness goals
+- text: Completely personalized experience for you Guidance from fitness and nutrition experts Transform your life and achieve your goals
+- button "Get Started"
+- paragraph: Ready to start your fitness journey?
 ```
