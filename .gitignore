@@ -95,3 +95,6 @@ local.properties
 test-results/
 playwright-report/
 playwright/.cache/
+
+# Video files
+*.webm
