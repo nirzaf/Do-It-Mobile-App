@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader } from '../ui/Card';
 import { useLanguage } from '../../context/LanguageContext';
 import { useUser } from '../../hooks/useUser';
@@ -90,28 +90,7 @@ export function MacroCalculator({ dailyMeals = [], className = '' }: MacroCalcul
     return 'bg-red-500';
   };
 
-  /**
-   * Get status message for macro
-   */
-  const getStatusMessage = (current: number, target: number, macroName: string): string => {
-    const percentage = getProgressPercentage(current, target);
-    const remaining = Math.max(0, target - current);
-    
-    if (percentage >= 100) {
-      return t('macros.targetAchieved', { macro: macroName });
-    } else if (percentage >= 80) {
-      return t('macros.almostThere', { remaining: remaining.toFixed(1), macro: macroName });
-    } else {
-      return t('macros.needMore', { remaining: remaining.toFixed(1), macro: macroName });
-    }
-  };
 
-  /**
-   * Calculate calories from macros
-   */
-  const calculateCaloriesFromMacros = (protein: number, carbs: number, fat: number): number => {
-    return (protein * 4) + (carbs * 4) + (fat * 9);
-  };
 
   const macroData = [
     {

@@ -4,19 +4,23 @@ import { Card, CardContent } from '../components/ui/Card';
 import { Header } from '../components/shared/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { useUser } from '../hooks/useUser';
+import { useSubscription } from '../components/features/SubscriptionGate';
 import { calculateBMI, calculateDailyCalories, calculateWaterIntake, generatePlan } from '../lib/utils';
 
-import { 
-  User, 
-  Target, 
-  Droplets, 
-  TrendingUp, 
+import {
+  User,
+  Target,
+  Droplets,
+  TrendingUp,
   Play,
   Utensils,
   Dumbbell,
   ChevronRight,
-  Crown
+  Crown,
+  MessageCircle,
+  BarChart3
 } from 'lucide-react';
+import { Badge } from '../components/ui/Badge';
 
 /**
  * Dashboard component - main screen after user registration
@@ -25,6 +29,7 @@ export function Dashboard() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const { user } = useUser();
+  const { hasVipSubscription, hasActiveSubscription } = useSubscription();
   const [bmi, setBmi] = useState<number>(0);
   const [dailyCalories, setDailyCalories] = useState<number>(0);
   const [waterIntake, setWaterIntake] = useState<number>(0);
@@ -264,6 +269,79 @@ export function Dashboard() {
               </div>
             </CardContent>
           </Card>
+
+          {/* VIP Features */}
+          {hasActiveSubscription && (
+            <>
+              {/* Personal Coaching - VIP Only */}
+              <Card
+                className={`cursor-pointer hover:shadow-md transition-shadow ${
+                  hasVipSubscription
+                    ? 'border-purple-200 dark:border-purple-800 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20'
+                    : 'opacity-60'
+                }`}
+                onClick={() => navigate('/coaching')}
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+                        <MessageCircle className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                      </div>
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <h3 className="font-medium text-slate-900 dark:text-slate-100">
+                            {t('personalCoaching')}
+                          </h3>
+                          <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                            VIP
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          {t('personalCoachingDescription')}
+                        </p>
+                      </div>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-slate-400" />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Advanced Analytics - VIP Only */}
+              <Card
+                className={`cursor-pointer hover:shadow-md transition-shadow ${
+                  hasVipSubscription
+                    ? 'border-blue-200 dark:border-blue-800 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20'
+                    : 'opacity-60'
+                }`}
+                onClick={() => navigate('/analytics')}
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                        <BarChart3 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <h3 className="font-medium text-slate-900 dark:text-slate-100">
+                            {t('advancedAnalytics')}
+                          </h3>
+                          <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                            VIP
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          {t('analyticsDescription')}
+                        </p>
+                      </div>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-slate-400" />
+                  </div>
+                </CardContent>
+              </Card>
+            </>
+          )}
 
           {/* Profile */}
           <Card 

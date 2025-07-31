@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../ui/Button';
 import { Card, CardContent, CardHeader } from '../ui/Card';
 import { useLanguage } from '../../context/LanguageContext';
-import type { Meal, LocalizedString } from '../../types';
-import { 
-  Clock, 
-  Users, 
-  ChefHat, 
-  Zap, 
-  Scale,
+import type { LocalizedString } from '../../types';
+import {
+  Clock,
+  Users,
+  ChefHat,
+  Zap,
   Heart,
   Leaf,
   AlertTriangle,

@@ -15,6 +15,9 @@ import { Exercises } from './pages/Exercises';
 import { ExerciseDetail } from './pages/ExerciseDetail';
 import { Profile } from './pages/Profile';
 import { Subscription } from './pages/Subscription';
+import { Coaching } from './pages/Coaching';
+import { Analytics } from './pages/Analytics';
+import { ProtectedRoute } from './routes/ProtectedRoute';
 
 /**
  * Main App component with routing and context providers
@@ -42,7 +45,25 @@ function App() {
                 <Route path="/exercises/:exerciseId" element={<ExerciseDetail />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/subscription" element={<Subscription />} />
-                
+
+                {/* VIP Features */}
+                <Route
+                  path="/coaching"
+                  element={
+                    <ProtectedRoute requireSubscription subscriptionType="vip">
+                      <Coaching />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/analytics"
+                  element={
+                    <ProtectedRoute requireSubscription subscriptionType="vip">
+                      <Analytics />
+                    </ProtectedRoute>
+                  }
+                />
+
                 {/* Catch all route */}
                 <Route path="*" element={<Navigate to="/welcome" replace />} />
               </Routes>

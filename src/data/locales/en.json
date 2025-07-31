@@ -158,7 +158,37 @@
   "liveClasses": "Live Fitness Classes",
   "prioritySupport": "Priority Support",
   "subscriptionConfirmation": "You have subscribed to the {packageName} package!",
+  "subscriptionError": "Payment failed. Please try again.",
   "backToDashboard": "Back to Dashboard",
+  "currentSubscription": "Current Subscription",
+  "daysRemaining": "days remaining",
+  "upgradeToVip": "Upgrade to VIP",
+  "subscriptionExpired": "Your subscription has expired. Please renew to continue using premium features.",
+  "vipUpgradeRequired": "This feature requires a VIP subscription. Upgrade now to unlock advanced features.",
+  "manageSubscription": "Manage Your Subscription",
+  "upgradeOrManageDescription": "Upgrade your plan or manage your current subscription",
+  "currentPlan": "Current Plan",
+  "upgrade": "Upgrade",
+  "completePayment": "Complete Payment",
+  "paymentMethod": "Payment Method",
+  "securePayment": "Secure payment protected by SSL encryption",
+  "processing": "Processing...",
+  "confirmPayment": "Confirm Payment",
+  "cancel": "Cancel",
+  "vipFeatureRequired": "VIP Feature Required",
+  "subscriptionRequired": "Subscription Required",
+  "subscriptionGateDescription": "Unlock {feature} with a premium subscription",
+  "vipOnlyFeature": "This feature is exclusive to VIP subscribers",
+  "subscriptionOnlyFeature": "This feature requires an active subscription",
+  "upgradeSubscription": "Upgrade Subscription",
+  "getSubscription": "Get Subscription",
+  "vipBenefits": "VIP Benefits",
+  "personalCoaching": "Personal Coaching",
+  "advancedAnalytics": "Advanced Analytics",
+  "prioritySupport": "Priority Support",
+  "personalCoachingDescription": "Get personalized guidance from certified fitness coaches",
+  "personalCoachingGateDescription": "Access one-on-one coaching sessions, personalized workout plans, and nutrition guidance from certified professionals.",
+  "analyticsGateDescription": "Get detailed insights into your progress with advanced analytics, trend analysis, and AI-powered recommendations.",
   "upgradeAccount": "Upgrade your account",
   "activityLevels": {
     "sedentary": {
@@ -205,5 +235,137 @@
   "prepareNextSet": "Prepare for the next set",
   "videoError": "Video unavailable",
   "playbackSpeed": "Playback Speed",
-  "speed": "speed"
+  "speed": "speed",
+  "nutrition": {
+    "protein": "Protein",
+    "carbs": "Carbs",
+    "fat": "Fat",
+    "fats": "Fats",
+    "fiber": "Fiber",
+    "calories": "Calories",
+    "macros": "Macros"
+  },
+  "diet": {
+    "meals": "Meals",
+    "hydration": "Hydration",
+    "macros": "Macros",
+    "shopping": "Shopping",
+    "shoppingList": "Shopping List",
+    "shoppingListComingSoon": "Shopping list feature coming soon!"
+  },
+  "hydration": {
+    "dailyHydration": "Daily Hydration",
+    "goalAchieved": "Great! You've reached your hydration goal!",
+    "almostThere": "Almost there! Keep drinking water.",
+    "halfwayThere": "You're halfway to your goal!",
+    "keepGoing": "Keep going! Stay hydrated.",
+    "quickAdd": "Quick Add",
+    "addWater": "Add Water",
+    "addTea": "Add Tea",
+    "recentEntries": "Recent Entries",
+    "tip": "Hydration Tip",
+    "tipMessage": "Drink water before you feel thirsty to stay properly hydrated.",
+    "tips": "Hydration Tips",
+    "tip1Title": "Drink Before Meals",
+    "tip1Description": "Have a glass of water 30 minutes before each meal to aid digestion.",
+    "tip2Title": "Set Reminders",
+    "tip2Description": "Use phone reminders to drink water every 2 hours throughout the day."
+  },
+  "macros": {
+    "dailyMacros": "Daily Macros",
+    "totalCalories": "Total Calories",
+    "complete": "Complete",
+    "distribution": "Distribution",
+    "recommendation": "Recommendation",
+    "recommendationLow": "You're below your calorie target. Consider adding healthy snacks.",
+    "recommendationHigh": "You're above your calorie target. Consider lighter portions.",
+    "recommendationGood": "Great! You're on track with your nutrition goals.",
+    "targetAchieved": "Target achieved for {macro}!",
+    "almostThere": "Almost there! {remaining}g {macro} remaining.",
+    "needMore": "You need {remaining}g more {macro}."
+  },
+  "meal": {
+    "notFound": "Meal not found",
+    "totalTime": "Total Time",
+    "calories": "Calories",
+    "difficulty": {
+      "label": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "servings": "Servings",
+    "adjustServings": "Adjust Servings",
+    "vegetarian": "Vegetarian",
+    "vegan": "Vegan",
+    "halal": "Halal",
+    "allergens": "Contains Allergens",
+    "tabs": {
+      "overview": "Overview",
+      "instructions": "Instructions",
+      "nutrition": "Nutrition"
+    },
+    "ingredients": "Ingredients",
+    "cookingInstructions": "Cooking Instructions",
+    "nutritionFacts": "Nutrition Facts"
+  },
+  "coaching": {
+    "overview": "Overview",
+    "sessions": "Sessions",
+    "progress": "Progress"
+  },
+  "yourPersonalCoach": "Your Personal Coach",
+  "yearsExperience": "years experience",
+  "scheduleVideoCall": "Schedule Video Call",
+  "sendMessage": "Send Message",
+  "upcomingSessions": "Upcoming Sessions",
+  "scheduleNew": "Schedule New",
+  "minutes": "minutes",
+  "sessionGoals": "Session Goals",
+  "coachingProgress": "Coaching Progress",
+  "completedSessions": "Completed Sessions",
+  "goalProgress": "Goal Progress",
+  "recentAchievements": "Recent Achievements",
+  "analyticsDescription": "Comprehensive insights into your fitness journey",
+  "loadingAnalytics": "Loading analytics...",
+  "weightChange": "Weight Change",
+  "totalWorkouts": "Total Workouts",
+  "consistency": "Consistency",
+  "caloriesBurned": "Calories Burned",
+  "avgPerWorkout": "avg per workout",
+  "avgDuration": "Avg Duration",
+  "nutritionAnalysis": "Nutrition Analysis",
+  "macroDistribution": "Macro Distribution",
+  "dailyAverages": "Daily Averages",
+  "aiInsights": "AI Insights",
+  "vipExclusive": "VIP Exclusive",
+  "payment": {
+    "card": "Card",
+    "paypal": "PayPal",
+    "bank": "Bank"
+  },
+  "sessionStatus": {
+    "scheduled": "Scheduled",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "timeRange": {
+    "week": "Week",
+    "month": "Month",
+    "quarter": "Quarter"
+  },
+  "analytics": {
+    "insight": {
+      "consistentProgress": "Consistent Progress",
+      "consistentProgressDesc": "You've maintained excellent workout consistency this month. Keep up the great work!",
+      "lowProtein": "Protein Intake",
+      "lowProteinDesc": "Consider increasing your protein intake to support muscle recovery and growth.",
+      "hydrationImprovement": "Hydration Improvement",
+      "hydrationImprovementDesc": "Your hydration levels have improved significantly over the past week."
+    }
+  },
+  "achievement": {
+    "consistentWorkouts": "Completed 7 consecutive workout days",
+    "weightLossGoal": "Reached 50% of weight loss goal"
+  }
 }

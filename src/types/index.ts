@@ -97,6 +97,8 @@ export interface UserProfile {
     type: SubscriptionType;
     startDate: string;
     endDate: string;
+    status: 'active' | 'expired' | 'cancelled';
+    autoRenew?: boolean;
   };
   createdAt: string;
   updatedAt: string;

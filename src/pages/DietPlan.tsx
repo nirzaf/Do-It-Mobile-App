@@ -20,7 +20,6 @@ import {
   Droplets,
   BarChart3,
   ShoppingCart,
-  BookOpen,
   Target
 } from 'lucide-react';
 
@@ -242,9 +241,10 @@ export function DietPlan() {
                   <CardContent className="pt-0">
                     <div className="space-y-3">
                       {meal.foods.map((food: any, foodIndex: number) => (
-                        <div 
+                        <div
                           key={foodIndex}
-                          className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-lg"
+                          className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                          onClick={() => setSelectedMeal(food)}
                         >
                           <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 bg-white dark:bg-slate-700 rounded-lg flex items-center justify-center">
